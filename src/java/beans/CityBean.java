@@ -7,49 +7,53 @@
 package beans;
 
 import db.ConfigApp;
+import java.io.Serializable;
 
 /**
  *
  * @author quangphamngoc
  */
-public class CityBean {
-    private int City_ID;
-    private String City_Name;
-    private int City_Status;
+public class CityBean implements Serializable{
+    private int city_ID;
+    private String city_Name;
+    private int city_Status;
+
+    public CityBean() {
+    }
 
     public int getCity_ID() {
-        return City_ID;
+        return city_ID;
     }
 
     public void setCity_ID(int City_ID) {
-        this.City_ID = City_ID;
+        this.city_ID = City_ID;
     }
 
     public String getCity_Name() {
-        return City_Name;
+        return city_Name;
     }
 
     public void setCity_Name(String City_Name) {
-        this.City_Name = City_Name;
+        this.city_Name = City_Name;
     }
 
     public int getCity_Status() {
-        return City_Status;
+        return city_Status;
     }
 
     public void setCity_Status(int City_Status) {
-        this.City_Status = City_Status;
+        this.city_Status = City_Status;
     }
 
     
-
+    
     /**
      * @return the statusAsString
      */
     public String getStatusAsString() {
         //Tuy thuoc vao gia tri cua status
         //Dung string luu trong class ConfigApp
-        if (City_Status==1){
+        if (city_Status==1){
             return ConfigApp.statusOK;
         } else{
             return ConfigApp.statusNotOK;

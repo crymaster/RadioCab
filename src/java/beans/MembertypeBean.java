@@ -13,41 +13,41 @@ import db.ConfigApp;
  * @author quangphamngoc
  */
 public class MembertypeBean {
-    private int Mem_ID;
-    private String Mem_Name;
-    private float Mem_Fee;
-    private int Mem_Status;
+    private int mem_ID;
+    private String mem_Name;
+    private float mem_Fee;
+    private int mem_Status;
 
     public int getMem_ID() {
-        return Mem_ID;
+        return mem_ID;
     }
 
-    public void setMem_ID(int Mem_ID) {
-        this.Mem_ID = Mem_ID;
+    public void setMem_ID(int mem_ID) {
+        this.mem_ID = mem_ID;
     }
 
     public String getMem_Name() {
-        return Mem_Name;
+        return mem_Name;
     }
 
-    public void setMem_Name(String Mem_Name) {
-        this.Mem_Name = Mem_Name;
+    public void setMem_Name(String mem_Name) {
+        this.mem_Name = mem_Name;
     }
     
     public float getMem_Fee() {
-        return Mem_Fee;
+        return mem_Fee;
     }
 
-    public void setMem_Fee(float Mem_Fee) {
-        this.Mem_Fee = Mem_Fee;
+    public void setMem_Fee(float mem_Fee) {
+        this.mem_Fee = mem_Fee;
     }
 
     public int getMem_Status() {
-        return Mem_Status;
+        return mem_Status;
     }
 
-    public void setMem_Status(int Mem_Status) {
-        this.Mem_Status = Mem_Status;
+    public void setMem_Status(int mem_Status) {
+        this.mem_Status = mem_Status;
     }
 
     
@@ -58,7 +58,7 @@ public class MembertypeBean {
     public String getStatusAsString() {
         //Tuy thuoc vao gia tri cua status
         //Dung string luu trong class ConfigApp
-        if (Mem_Status==1){
+        if (mem_Status==1){
             return ConfigApp.statusOK;
         } else{
             return ConfigApp.statusNotOK;

@@ -20,7 +20,7 @@
             <forward name="success" path="/frontend/index.jsp"/>
         </action>
         
-        <action path="/listing" type="com.radiocab.in.action.ListingAction">
+        <action path="/listing" type="com.radiocab.in.action.ListingAction" name="registerCompanyForm">
             <forward name="success" path="/frontend/listing.jsp"/>
         </action>
         

@@ -27,7 +27,7 @@
                 <br/>
                 <br/>
                 City: <html:select property="cityId">
-
+                    <html:optionsCollection property="cityList" label="city_Name" value="city_ID"/>
                 </html:select>
                 <br/>
                 <br/>
@@ -46,11 +46,20 @@
                 Email: <html:text property="comEmail"/>
                 <br/>
                 <br/>
+                Membership: <html:select property="membershipType">
+                    <html:optionsCollection property="membershipTypeList" label="mem_Name" value="mem_ID"/>
+                </html:select>
+                <br/>
+                <br/>
+                Payment: <html:select property="paymentType">
+                    <html:optionsCollection property="paymentTypeList" label="paytype_Name" value="paytype_ID"/>
+                </html:select>
+                <br/>
+                <br/>
                 <html:submit  value="Register"/>
                 <html:reset value="Clear"/>
             </html:form>
         </div>
         <div class="clear"></div>
     </div>
-</div>
 </div>

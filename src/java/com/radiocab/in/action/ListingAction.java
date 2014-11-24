@@ -6,7 +6,12 @@
 package com.radiocab.in.action;
 
 import beans.CityBean;
+import beans.MembertypeBean;
+import beans.PaymenttypeBean;
+import com.radiocab.in.actionform.RegisterCompanyForm;
 import db.CityDB;
+import db.MembertypeDB;
+import db.PaymenttypeDB;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +42,13 @@ public class ListingAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        RegisterCompanyForm regForm = (RegisterCompanyForm) form;
         ArrayList<CityBean> cities = (ArrayList)CityDB.getAllAvailableCity();
+        ArrayList<MembertypeBean> members = (ArrayList)MembertypeDB.getAllAvailableMembertype();
+        ArrayList<PaymenttypeBean> payments = (ArrayList) PaymenttypeDB.getPaymentTypeByPtFor("Company");
+        regForm.setCityList(cities);
+        regForm.setMembershipTypeList(members);
+        regForm.setPaymentTypeList(payments);
         return mapping.findForward(SUCCESS);
     }
 }

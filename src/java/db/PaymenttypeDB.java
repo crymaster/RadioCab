@@ -212,7 +212,36 @@ public class PaymenttypeDB {
         }
         return lastid;
     }
+    
+    public static List<PaymenttypeBean> getPaymentTypeByPtFor(String ptFor){
+        List<PaymenttypeBean> list = new ArrayList<PaymenttypeBean>();
+        try {
+            if (!connect()) {
+                return list;
+            } else {
+                PreparedStatement stmt = con.prepareStatement("SELECT * FROM tblPaymentType WHERE ptStatus = 1 AND ptFor = ?");
+                stmt.setString(1, ptFor);
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    PaymenttypeBean item = new PaymenttypeBean();
+                    item.setPaytype_ID(rs.getInt("ptID"));
+                    item.setPaytype_For(rs.getString("ptFor"));
+                    item.setPaytype_Name(rs.getString("ptType"));
+                    item.setPaytype_Days(rs.getInt("ptDays"));
+                    item.setPaytype_Fee(rs.getFloat("ptFee"));
+                    item.setPaytype_Status(rs.getInt("ptStatus"));
+                    list.add(item);
+                }
+            }
 
+        } catch (SQLException ex) {
+            Logger.getLogger(PaymenttypeDB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            disconnect();
+        }
+
+        return list;
+    }
 //    public static int countTotalGroup(){
 //        int count = 0;
 //        try {

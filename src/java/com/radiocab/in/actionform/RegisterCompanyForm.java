@@ -5,6 +5,7 @@
  */
 package com.radiocab.in.actionform;
 
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionErrors;
@@ -16,6 +17,7 @@ import org.apache.struts.action.ActionMessage;
  * @author son
  */
 public class RegisterCompanyForm extends org.apache.struts.action.ActionForm {
+
     private String comUsername;
     private String comPass;
     private String comPassConfirm;
@@ -28,6 +30,11 @@ public class RegisterCompanyForm extends org.apache.struts.action.ActionForm {
     private String comTel;
     private String comFax;
     private String comEmail;
+    private int membershipType;
+    private int paymentType;
+    private ArrayList cityList;
+    private ArrayList membershipTypeList;
+    private ArrayList paymentTypeList;
 
     public String getComUsername() {
         return comUsername;
@@ -124,9 +131,47 @@ public class RegisterCompanyForm extends org.apache.struts.action.ActionForm {
     public void setComEmail(String comEmail) {
         this.comEmail = comEmail;
     }
-    
-    
-    
+
+    public int getMembershipType() {
+        return membershipType;
+    }
+
+    public void setMembershipType(int membershipType) {
+        this.membershipType = membershipType;
+    }
+
+    public int getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(int paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public ArrayList getCityList() {
+        return cityList;
+    }
+
+    public void setCityList(ArrayList cityList) {
+        this.cityList = cityList;
+    }
+
+    public ArrayList getMembershipTypeList() {
+        return membershipTypeList;
+    }
+
+    public void setMembershipTypeList(ArrayList membershipTypeList) {
+        this.membershipTypeList = membershipTypeList;
+    }
+
+    public ArrayList getPaymentTypeList() {
+        return paymentTypeList;
+    }
+
+    public void setPaymentTypeList(ArrayList paymentTypeList) {
+        this.paymentTypeList = paymentTypeList;
+    }
+
     /**
      *
      */

@@ -13,7 +13,7 @@ package db;
 public class ConfigDB {
     public static final String DBUSER = "root";
     public static final String DBPASS = "";
-    public static final String DBNAME = "radiocabs";
+    public static final String DBNAME = "RadioCabs";
     public static final String DBPORT = "3306";
     public static final Boolean DEBUG_MODE = true;
     

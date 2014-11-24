@@ -241,7 +241,7 @@ public class CompanyDB {
         return success;
     }
 
-    public static int addComapny(CompanyBean item) {
+    public static int addCompany(CompanyBean item) {
         int lastid = -1;
         connect();
         try {

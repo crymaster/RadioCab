@@ -14,10 +14,13 @@
                 Company Name: <html:text property="comUsername"/>
                 <br/>
                 <br/>
-                Password: <html:text property="comPass"/>
+                Password: <html:password property="comPass"/>
                 <br/>
                 <br/>
-                Password Confirmation: <html:text property="comPassConfirm"/>
+                Password Confirmation: <html:password property="comPassConfirm"/>
+                <br/>
+                <br/>
+                Display Company Name: <html:text property="comName"/>
                 <br/>
                 <br/>
                 Contact Person: <html:text property="comContactPerson"/>

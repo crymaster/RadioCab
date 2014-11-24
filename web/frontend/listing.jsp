@@ -5,6 +5,6 @@
 --%>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 <tiles:insert definition="default-layout">
-    <tiles:put name="title" value="Home"/>
+    <tiles:put name="title" value="Company"/>
     <tiles:put name="body" value="../listing-body.jsp"/>
 </tiles:insert>

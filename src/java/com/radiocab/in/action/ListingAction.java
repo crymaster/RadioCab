@@ -5,6 +5,9 @@
  */
 package com.radiocab.in.action;
 
+import beans.CityBean;
+import db.CityDB;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -34,7 +37,7 @@ public class ListingAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
+        ArrayList<CityBean> cities = (ArrayList)CityDB.getAllAvailableCity();
         return mapping.findForward(SUCCESS);
     }
 }

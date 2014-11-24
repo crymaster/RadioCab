@@ -7,7 +7,7 @@
 
 <struts-config>
     <form-beans>
-    
+        <form-bean type="com.radiocab.in.actionform.RegisterCompanyForm" name="registerCompanyForm"/>
     </form-beans>
     
     <global-exceptions>
@@ -15,12 +15,18 @@
     </global-exceptions>
 
     <action-mappings>
+        
         <action path="/homepage" type="com.radiocab.in.action.HomePageAction">
             <forward name="success" path="/frontend/index.jsp"/>
         </action>
         
         <action path="/listing" type="com.radiocab.in.action.ListingAction">
             <forward name="success" path="/frontend/listing.jsp"/>
+        </action>
+        
+        <!-- Handle register form on /listing -->
+        <action path="/register-company" type="com.radiocab.in.action.RegisterCompanyAction" name="registerCompanyForm">
+            
         </action>
         
     </action-mappings>

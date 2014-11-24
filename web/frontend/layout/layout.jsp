@@ -5,6 +5,9 @@
 --%>
 
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,6 +20,7 @@
         <link rel="shortcut icon" href="frontend/images/favicon.ico" />
         <link rel="stylesheet" href="frontend/booking/css/booking.css">
         <link rel="stylesheet" href="frontend/css/camera.css">
+        <link rel="stylesheet" href="frontend/css/form.css">
         <link rel="stylesheet" href="frontend/css/owl.carousel.css">
         <link rel="stylesheet" href="frontend/css/style.css">
         <script src="frontend/js/jquery.js"></script>
@@ -29,6 +33,7 @@
         <script src="frontend/js/jquery.easing.1.3.js"></script>
         <script src="frontend/js/owl.carousel.js"></script>
         <script src="frontend/js/camera.js"></script>
+        <script src="frontend/js/TMForm.js"></script>
         <!--[if (gt IE 9)|!(IE)]><!-->
         <script src="frontend/js/jquery.mobile.customized.min.js"></script>
         <!--<![endif]-->
@@ -65,7 +70,7 @@
         <div class="main">
 
             <tiles:insert attribute="header"/>
-
+            
             <tiles:insert attribute="body"/> 
         </div>
 

@@ -3,13 +3,20 @@
     Created on : Nov 23, 2014, 6:34:17 PM
     Author     : Son
 --%>
+<%@page import="org.apache.struts.action.ActionMessage"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <div class="content">
     <div class="container_12">
 
         <div class="grid_6 prefix_1">
             <h3>Company Registration</h3>
-
+            <c:forEach items="${requestScope.errors}" var="error">
+                <bean:message key="${error}"/>
+            </c:forEach>
             <html:form action="/register-company">
                 Company Name: <html:text property="comUsername"/>
                 <br/>

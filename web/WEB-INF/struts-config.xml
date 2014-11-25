@@ -26,14 +26,15 @@
         
         <!-- Handle register form on /listing -->
         <action path="/register-company" type="com.radiocab.in.action.RegisterCompanyAction" name="registerCompanyForm">
-            
+            <forward name="failure" path="/frontend/listing.jsp"/>
         </action>
         
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
 
-    <message-resources parameter=""/>    
+    <message-resources
+		parameter="com.radiocab.in.message.Common" />    
     
     <!-- ========================= Tiles plugin ===============================-->
     <!--

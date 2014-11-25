@@ -18,7 +18,7 @@
                 <bean:message key="${error}"/>
             </c:forEach>
             <html:form action="/register-driver-handler">
-                Company Name: <html:text property="drvUsername"/>
+                Driver User Name: <html:text property="drvUsername"/>
                 <br/>
                 <br/>
                 Password: <html:password property="drvPass"/>
@@ -27,7 +27,7 @@
                 Password Confirmation: <html:password property="drvPassConfirm"/>
                 <br/>
                 <br/>
-                Display Company Name: <html:text property="drvName"/>
+                Full Name: <html:text property="drvName"/>
                 <br/>
                 <br/>
                 Contact Person: <html:text property="drvContactPerson"/>

@@ -234,19 +234,20 @@ public class DriverDB {
             } else {
                 pstmt = con.prepareStatement("INSERT INTO `" + ConfigDB.DBNAME + "`.`tblDriver` (`drvUsername`, `drvPass`, "
                         + "`drvName`, `drvContactPerson`, `citID`, `drvAddress`, `drvImage`, `drvMobile`, `drvTel`, "
-                        + "`drvEmail`, `drvExp`, `drvDescription`) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+                        + "`drvEmail`, `drvExp`, `drvDescription`,`drvStatus`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
                 pstmt.setString(1,item.getDriver_uName());
                 pstmt.setString(2,item.getDriver_Pass());
                 pstmt.setString(3,item.getDriver_Name());
                 pstmt.setString(4,item.getDriver_Contactperson());
                 pstmt.setInt(5,item.getCity_ID());
                 pstmt.setString(6,item.getDriver_Address());
-                pstmt.setString(6,item.getDriver_Image());
+                pstmt.setString(7,item.getDriver_Image());
                 pstmt.setString(8,item.getDriver_Mobile());
                 pstmt.setString(9,item.getDriver_Tel());
                 pstmt.setString(10,item.getDriver_Email());
                 pstmt.setString(11,item.getDriver_Exp());
                 pstmt.setString(12,item.getDriver_Description());
+                pstmt.setInt(13, item.getDriver_Status());
                 int kq = pstmt.executeUpdate();
                 if (kq != 0) {
                     pstmt = con.prepareStatement("SELECT LAST_INSERT_ID()");

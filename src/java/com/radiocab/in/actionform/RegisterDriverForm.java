@@ -5,6 +5,7 @@
  */
 package com.radiocab.in.actionform;
 
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
@@ -28,6 +29,9 @@ public class RegisterDriverForm extends ActionForm {
     private String drvEmail;
     private String drvExp;
     private String drvDescription;
+    private int paymentType;
+    private ArrayList cityList;
+    private ArrayList paymentTypeList;
 
     public String getDrvUsername() {
         return drvUsername;
@@ -121,8 +125,32 @@ public class RegisterDriverForm extends ActionForm {
         return drvDescription;
     }
 
+    public int getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(int paymentType) {
+        this.paymentType = paymentType;
+    }
+
     public void setDrvDescription(String drvDescription) {
         this.drvDescription = drvDescription;
+    }
+
+    public ArrayList getCityList() {
+        return cityList;
+    }
+
+    public void setCityList(ArrayList cityList) {
+        this.cityList = cityList;
+    }
+
+    public ArrayList getPaymentTypeList() {
+        return paymentTypeList;
+    }
+
+    public void setPaymentTypeList(ArrayList paymentTypeList) {
+        this.paymentTypeList = paymentTypeList;
     }
 
     @Override

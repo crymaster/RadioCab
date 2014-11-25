@@ -42,11 +42,11 @@
         
         <!-- Handle register driver -->
         <action path="/register-driver" type="com.radiocab.in.action.RegisterDriverAction" name="registerDriverForm">
-            <forward name="success" path="/frontend/company/registerDriver.jsp"/>
+            <forward name="success" path="/frontend/driver/registerDriver.jsp"/>
         </action>
         
         <action path="/register-driver-handler" type="com.radiocab.in.action.RegisterDriverHandlerAction" name="registerDriverForm">
-            <forward name="failure" path="/frontend/company/registerDriver.jsp"/>
+            <forward name="failure" path="/frontend/driver/registerDriver.jsp"/>
         </action>
     </action-mappings>
     

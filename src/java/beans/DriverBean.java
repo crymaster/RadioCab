@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beans;
 
 import db.ConfigApp;
@@ -14,151 +13,151 @@ import java.sql.Timestamp;
  * @author quangphamngoc
  */
 public class DriverBean {
-    private int Driver_ID;
-    private String Driver_uName;
-    private String Driver_Pass;
-    private String Driver_Name;
-    private String Driver_Contactperson;
-    private int City_ID;
-    private String City_Name;
-    private String Driver_Address;
-    private String Driver_Image;
-    private String Driver_Mobile;
-    private String Driver_Tel;
-    private String Driver_Email;
-    private String Driver_Exp;
-    private String Driver_Description;
-    private Timestamp Driver_RegDate;
-    private int Driver_Status;
+
+    private int driver_ID;
+    private String driver_uName;
+    private String driver_Pass;
+    private String driver_Name;
+    private String driver_Contactperson;
+    private int city_ID;
+    private String city_Name;
+    private String driver_Address;
+    private String driver_Image;
+    private String driver_Mobile;
+    private String driver_Tel;
+    private String driver_Email;
+    private String driver_Exp;
+    private String driver_Description;
+    private Timestamp driver_RegDate;
+    private int driver_Status;
 
     public int getDriver_ID() {
-        return Driver_ID;
+        return driver_ID;
     }
 
-    public void setDriver_ID(int Driver_ID) {
-        this.Driver_ID = Driver_ID;
+    public void setDriver_ID(int driver_ID) {
+        this.driver_ID = driver_ID;
     }
 
     public String getDriver_uName() {
-        return Driver_uName;
+        return driver_uName;
     }
 
-    public void setDriver_uName(String Driver_uName) {
-        this.Driver_uName = Driver_uName;
+    public void setDriver_uName(String driver_uName) {
+        this.driver_uName = driver_uName;
     }
 
     public String getDriver_Pass() {
-        return Driver_Pass;
+        return driver_Pass;
     }
 
-    public void setDriver_Pass(String Driver_Pass) {
-        this.Driver_Pass = Driver_Pass;
+    public void setDriver_Pass(String driver_Pass) {
+        this.driver_Pass = driver_Pass;
     }
 
     public String getDriver_Name() {
-        return Driver_Name;
+        return driver_Name;
     }
 
-    public void setDriver_Name(String Driver_Name) {
-        this.Driver_Name = Driver_Name;
+    public void setDriver_Name(String driver_Name) {
+        this.driver_Name = driver_Name;
     }
 
     public String getDriver_Contactperson() {
-        return Driver_Contactperson;
+        return driver_Contactperson;
     }
 
-    public void setDriver_Contactperson(String Driver_Contactperson) {
-        this.Driver_Contactperson = Driver_Contactperson;
+    public void setDriver_Contactperson(String driver_Contactperson) {
+        this.driver_Contactperson = driver_Contactperson;
     }
 
     public int getCity_ID() {
-        return City_ID;
+        return city_ID;
     }
 
-    public void setCity_ID(int City_ID) {
-        this.City_ID = City_ID;
+    public void setCity_ID(int city_ID) {
+        this.city_ID = city_ID;
     }
-    
+
     public String getCity_Name() {
-        return City_Name;
+        return city_Name;
     }
 
-    public void setCity_Name(String City_Name) {
-        this.City_Name = City_Name;
+    public void setCity_Name(String city_Name) {
+        this.city_Name = city_Name;
     }
+
     public String getDriver_Address() {
-        return Driver_Address;
+        return driver_Address;
     }
 
-    public void setDriver_Address(String Driver_Address) {
-        this.Driver_Address = Driver_Address;
+    public void setDriver_Address(String driver_Address) {
+        this.driver_Address = driver_Address;
     }
 
     public String getDriver_Image() {
-        return Driver_Image;
+        return driver_Image;
     }
 
-    public void setDriver_Image(String Driver_Image) {
-        this.Driver_Image = Driver_Image;
+    public void setDriver_Image(String driver_Image) {
+        this.driver_Image = driver_Image;
     }
 
-    
     public String getDriver_Mobile() {
-        return Driver_Mobile;
+        return driver_Mobile;
     }
 
-    public void setDriver_Mobile(String Driver_Mobile) {
-        this.Driver_Mobile = Driver_Mobile;
+    public void setDriver_Mobile(String driver_Mobile) {
+        this.driver_Mobile = driver_Mobile;
     }
 
     public String getDriver_Tel() {
-        return Driver_Tel;
+        return driver_Tel;
     }
 
-    public void setDriver_Tel(String Driver_Tel) {
-        this.Driver_Tel = Driver_Tel;
+    public void setDriver_Tel(String driver_Tel) {
+        this.driver_Tel = driver_Tel;
     }
 
     public String getDriver_Email() {
-        return Driver_Email;
+        return driver_Email;
     }
 
-    public void setDriver_Email(String Driver_Email) {
-        this.Driver_Email = Driver_Email;
+    public void setDriver_Email(String driver_Email) {
+        this.driver_Email = driver_Email;
     }
 
     public String getDriver_Exp() {
-        return Driver_Exp;
+        return driver_Exp;
     }
 
-    public void setDriver_Exp(String Driver_Exp) {
-        this.Driver_Exp = Driver_Exp;
+    public void setDriver_Exp(String driver_Exp) {
+        this.driver_Exp = driver_Exp;
     }
 
     public String getDriver_Description() {
-        return Driver_Description;
+        return driver_Description;
     }
 
-    public void setDriver_Description(String Driver_Description) {
-        this.Driver_Description = Driver_Description;
+    public void setDriver_Description(String driver_Description) {
+        this.driver_Description = driver_Description;
     }
 
     public Timestamp getDriver_RegDate() {
-        return Driver_RegDate;
+        return driver_RegDate;
     }
 
-    public void setDriver_RegDate(Timestamp Driver_RegDate) {
-        this.Driver_RegDate = Driver_RegDate;
+    public void setDriver_RegDate(Timestamp driver_RegDate) {
+        this.driver_RegDate = driver_RegDate;
     }
 
     public int getDriver_Status() {
-        return Driver_Status;
+        return driver_Status;
     }
 
-    public void setDriver_Status(int Driver_Status) {
-        this.Driver_Status = Driver_Status;
+    public void setDriver_Status(int driver_Status) {
+        this.driver_Status = driver_Status;
     }
-
 
     /**
      * @return the statusAsString
@@ -166,7 +165,7 @@ public class DriverBean {
     public String getStatusAsString() {
         //Tuy thuoc vao gia tri cua status
         //Dung string luu trong class ConfigApp
-        switch (Driver_Status){
+        switch (driver_Status) {
             case 1:
                 return ConfigApp.statusOK;
             case 0:
@@ -176,6 +175,5 @@ public class DriverBean {
         }
         return "";
     }
-    
-    
+
 }

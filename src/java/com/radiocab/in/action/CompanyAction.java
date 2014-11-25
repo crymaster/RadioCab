@@ -6,13 +6,8 @@
 package com.radiocab.in.action;
 
 import beans.CityBean;
-import beans.MembertypeBean;
-import beans.PaymenttypeBean;
-import com.radiocab.in.actionform.RegisterCompanyForm;
 import com.radiocab.in.actionform.SearchCompanyForm;
 import db.CityDB;
-import db.MembertypeDB;
-import db.PaymenttypeDB;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

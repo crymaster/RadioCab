@@ -267,6 +267,52 @@ public class DriverDB {
         return lastid;
     }
 
+    public static List<DriverBean> search(String drvName, int cityId) {
+        List<DriverBean> list = new ArrayList<DriverBean>();
+        try {
+            if (!connect()) {
+                return list;
+            } else {
+                drvName += "%";
+                String sql = "SELECT * FROM tblDriver "
+                        + " INNER JOIN tblCity ON tblDriver.citID = tblCity.citID"
+                        + " WHERE drvStatus = 1 "
+                        + " AND ( drvUsername LIKE '" + drvName + "' OR drvName LIKE '" + drvName + "')";
+                if (cityId != 0) {
+                    sql += "AND tblCity.citID = " + cityId;
+                }
+                Statement stmt = con.createStatement();
+
+                ResultSet rs = stmt.executeQuery(sql);
+                while (rs.next()) {
+                    DriverBean item = new DriverBean();
+                    item.setDriver_ID(rs.getInt("drvID"));
+                    item.setDriver_uName(rs.getString("drvUsername"));
+                    item.setDriver_Pass(rs.getString("drvPass"));
+                    item.setDriver_Name(rs.getString("drvName"));
+                    item.setDriver_Contactperson(rs.getString("drvContactPerson"));
+                    item.setDriver_Image(rs.getString("drvImage"));
+                    item.setCity_ID(rs.getInt("citID"));
+                    item.setCity_Name(rs.getString("citName"));
+                    item.setDriver_Address(rs.getString("drvAddress"));
+                    item.setDriver_Mobile(rs.getString("drvMobile"));
+                    item.setDriver_Tel(rs.getString("drvTel"));
+                    item.setDriver_Email(rs.getString("drvEmail"));
+                    item.setDriver_RegDate(rs.getTimestamp("drvRegDate"));
+                    item.setDriver_Status(rs.getInt("drvStatus"));
+                    list.add(item);
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyDB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            disconnect();
+        }
+
+        return list;
+    }
+    
 //    public static int countTotalGroup(){
 //        int count = 0;
 //        try {

@@ -5,11 +5,17 @@
  */
 package com.radiocab.in.action;
 
+import beans.CityBean;
 import beans.CompanyBean;
+import beans.MembertypeBean;
 import beans.PaymentBean;
+import beans.PaymenttypeBean;
 import com.radiocab.in.actionform.RegisterCompanyForm;
+import db.CityDB;
 import db.CompanyDB;
+import db.MembertypeDB;
 import db.PaymentDB;
+import db.PaymenttypeDB;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,7 +34,6 @@ import utils.ActionResult;
 public class RegisterCompanyHandlerAction extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
-
     /**
      * This is the action called from the Struts framework.
      *
@@ -62,34 +67,39 @@ public class RegisterCompanyHandlerAction extends org.apache.struts.action.Actio
         company.setCom_RegDate(new Timestamp(new Date().getTime()));
         company.setCom_Status(1);
         int id = CompanyDB.addCompany(company);
-        
-        if(id == -1){
+
+        if (id == -1) {
             errors.add("registerError");
             request.setAttribute("errors", errors);
+            ArrayList<CityBean> cities = (ArrayList) CityDB.getAllAvailableCity();
+            ArrayList<MembertypeBean> members = (ArrayList) MembertypeDB.getAllAvailableMembertype();
+            ArrayList<PaymenttypeBean> payments = (ArrayList) PaymenttypeDB.getPaymentTypeByPtFor("Company");
+            regForm.setCityList(cities);
+            regForm.setMembershipTypeList(members);
+            regForm.setPaymentTypeList(payments);
             return mapping.findForward(ActionResult.FAILURE);
-        }
-        else {
-            PaymentBean payment = new PaymentBean();
-            payment.setPaytype_ID(regForm.getPaymentType());
-            payment.setCom_ID(company.getCom_ID());
-            Date today = new Date();
-            payment.setPay_Time(new Timestamp(today.getTime()));
-            payment.setPay_Status(1);
+        } else {
+            /*PaymentBean payment = new PaymentBean();
+             payment.setPaytype_ID(regForm.getPaymentType());
+             payment.setCom_ID(company.getCom_ID());
+             Date today = new Date();
+             payment.setPay_Time(new Timestamp(today.getTime()));
+             payment.setPay_Status(1);
             
-            if(!PaymentDB.addPayment(payment)){
-                errors.add("registerError");
-                request.setAttribute("errors", errors);
-                return mapping.findForward(ActionResult.FAILURE);
-            }
-            
+             if(!PaymentDB.addPayment(payment)){
+             errors.add("registerError");
+             request.setAttribute("errors", errors);
+             return mapping.findForward(ActionResult.FAILURE);
+             }
+             */
             Cookie cookie = new Cookie("rcUsername", company.getCom_uName());
-            cookie.setMaxAge(60*60); //1 hour
+            cookie.setMaxAge(60 * 60); //1 hour
             response.addCookie(cookie);
-            cookie = new Cookie("rcUserId", company.getCom_ID()+"");
-            cookie.setMaxAge(60*60); //1 hour
+            cookie = new Cookie("rcUserId", company.getCom_ID() + "");
+            cookie.setMaxAge(60 * 60); //1 hour
             response.addCookie(cookie);
             cookie = new Cookie("rcUserType", "company");
-            cookie.setMaxAge(60*60); //1 hour
+            cookie.setMaxAge(60 * 60); //1 hour
             response.addCookie(cookie);
             return mapping.findForward(ActionResult.SUCCESS);
         }

@@ -18,7 +18,7 @@
         <meta name = "format-detection" content = "telephone=no" />
         <link rel="icon" href="frontend/images/favicon.ico">
         <link rel="shortcut icon" href="frontend/images/favicon.ico" />
-        <link rel="stylesheet" href="frontend/booking/css/booking.css">
+        <link rel="stylesheet" href="frontend/css/booking.css">
         <link rel="stylesheet" href="frontend/css/camera.css">
         <link rel="stylesheet" href="frontend/css/form.css">
         <link rel="stylesheet" href="frontend/css/owl.carousel.css">
@@ -37,7 +37,7 @@
         <!--[if (gt IE 9)|!(IE)]><!-->
         <script src="frontend/js/jquery.mobile.customized.min.js"></script>
         <!--<![endif]-->
-        <script src="frontend/booking/js/booking.js"></script>
+        <script src="frontend/js/booking.js"></script>
         <script>
             $(document).ready(function () {
                 jQuery('#camera_wrap').camera({

@@ -8,6 +8,8 @@
 <struts-config>
     <form-beans>
         <form-bean type="com.radiocab.in.actionform.RegisterCompanyForm" name="registerCompanyForm"/>
+        <form-bean type="com.radiocab.in.actionform.SearchCompanyForm" name="searchCompanyForm"/>
+        <form-bean type="com.radiocab.in.actionform.RegisterDriverForm" name="registerDriverForm"/>
     </form-beans>
     
     <global-exceptions>
@@ -20,7 +22,12 @@
             <forward name="success" path="/frontend/index.jsp"/>
         </action>
         
-        <action path="/company" type="com.radiocab.in.action.CompanyAction">
+        <!-- Handle search company -->
+        <action path="/companies" type="com.radiocab.in.action.CompanyAction" name="searchCompanyForm">
+            <forward name="success" path="/frontend/company/company.jsp"/>
+        </action>
+        
+        <action path="/search-company" type="com.radiocab.in.action.SearchCompanyAction" name="searchCompanyForm">
             <forward name="success" path="/frontend/company/company.jsp"/>
         </action>
         
@@ -33,6 +40,14 @@
             <forward name="failure" path="/frontend/company/registerCompany.jsp"/>
         </action>
         
+        <!-- Handle register driver -->
+        <action path="/register-driver" type="com.radiocab.in.action.RegisterDriverAction" name="registerDriverForm">
+            <forward name="success" path="/frontend/company/registerDriver.jsp"/>
+        </action>
+        
+        <action path="/register-driver-handler" type="com.radiocab.in.action.RegisterDriverHandlerAction" name="registerDriverForm">
+            <forward name="failure" path="/frontend/company/registerDriver.jsp"/>
+        </action>
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>

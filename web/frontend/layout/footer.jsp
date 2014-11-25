@@ -16,8 +16,8 @@
             </div>
             <div class="copy">
                 <div class="st1">
-                    <div class="brand">Tour<span class="color1">T</span>axi </div>
-                    &copy; 2014	| <a href="#">Privacy Policy</a> </div> Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
+                    <div class="brand">Radio<span class="color1">C</span>abs </div>
+                    &copy; 2014	| <a href="#">Privacy Policy</a> </div>
             </div>
         </div>
         <div class="clear"></div>

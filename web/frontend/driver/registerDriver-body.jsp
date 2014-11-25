@@ -1,5 +1,5 @@
 <%-- 
-    Document   : company-register-body
+    Document   : driver-register-body
     Created on : Nov 25, 2014, 2:52:36 PM
     Author     : son
 --%>
@@ -13,27 +13,24 @@
     <div class="container_12">
 
         <div class="grid_6 prefix_1">
-            <h3>Company Registration</h3>
+            <h3>Driver Registration</h3>
             <c:forEach items="${requestScope.errors}" var="error">
                 <bean:message key="${error}"/>
             </c:forEach>
-            <html:form action="/register-company-handler">
-                Company Name: <html:text property="comUsername"/>
+            <html:form action="/register-driver-handler">
+                Company Name: <html:text property="drvUsername"/>
                 <br/>
                 <br/>
-                Password: <html:password property="comPass"/>
+                Password: <html:password property="drvPass"/>
                 <br/>
                 <br/>
-                Password Confirmation: <html:password property="comPassConfirm"/>
+                Password Confirmation: <html:password property="drvPassConfirm"/>
                 <br/>
                 <br/>
-                Display Company Name: <html:text property="comName"/>
+                Display Company Name: <html:text property="drvName"/>
                 <br/>
                 <br/>
-                Contact Person: <html:text property="comContactPerson"/>
-                <br/>
-                <br/>
-                Designation: <html:text property="comDesignation"/>
+                Contact Person: <html:text property="drvContactPerson"/>
                 <br/>
                 <br/>
                 City: <html:select property="cityId">
@@ -41,24 +38,22 @@
                 </html:select>
                 <br/>
                 <br/>
-                Address: <html:text property="comAddress"/>
+                Address: <html:text property="drvAddress"/>
                 <br/>
                 <br/>
-                Mobile: <html:text property="comMobile"/>
+                Mobile: <html:text property="drvMobile"/>
                 <br/>
                 <br/>
-                Telephone: <html:text property="comTel"/>
+                Telephone: <html:text property="drvTel"/>
                 <br/>
                 <br/>
-                Fax: <html:text property="comFax"/>
+                Email: <html:text property="drvEmail"/>
                 <br/>
                 <br/>
-                Email: <html:text property="comEmail"/>
+                Experience: <html:textarea property="drvExp"/>
                 <br/>
                 <br/>
-                Membership: <html:select property="membershipType">
-                    <html:optionsCollection property="membershipTypeList" label="mem_Name" value="mem_ID"/>
-                </html:select>
+                Description: <html:textarea property="drvDescription"/>
                 <br/>
                 <br/>
                 Payment: <html:select property="paymentType">
@@ -71,7 +66,7 @@
             </html:form>
         </div>
         <div class="grid_4">
-            <a href="companies.do" class="bigLink">Search for company</a>
+            <a href="drivers.do" class="bigLink">Search for driver</a>
         </div>
         <div class="clear"></div>
     </div>

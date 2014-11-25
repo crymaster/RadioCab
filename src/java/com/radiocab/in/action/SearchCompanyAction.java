@@ -6,12 +6,10 @@
 package com.radiocab.in.action;
 
 import beans.CityBean;
-import beans.MembertypeBean;
-import beans.PaymenttypeBean;
-import com.radiocab.in.actionform.RegisterCompanyForm;
+import beans.CompanyBean;
+import com.radiocab.in.actionform.SearchCompanyForm;
 import db.CityDB;
-import db.MembertypeDB;
-import db.PaymenttypeDB;
+import db.CompanyDB;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,17 +23,20 @@ import utils.ActionResult;
  *
  * @author son
  */
-public class RegisterCompanyAction extends Action {
+public class SearchCompanyAction extends Action {
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        RegisterCompanyForm regForm = (RegisterCompanyForm) form;
+        SearchCompanyForm searchForm = (SearchCompanyForm) form;
         ArrayList<CityBean> cities = (ArrayList) CityDB.getAllAvailableCity();
-        ArrayList<MembertypeBean> members = (ArrayList) MembertypeDB.getAllAvailableMembertype();
-        ArrayList<PaymenttypeBean> payments = (ArrayList) PaymenttypeDB.getPaymentTypeByPtFor("Company");
-        regForm.setCityList(cities);
-        regForm.setMembershipTypeList(members);
-        regForm.setPaymentTypeList(payments);
+        CityBean allCity = new CityBean();
+        allCity.setCity_ID(0);
+        allCity.setCity_Name("Whole country");
+        cities.add(allCity);
+        searchForm.setCityList(cities);
+        ArrayList<CompanyBean> companies = (ArrayList)CompanyDB.search(searchForm.getComName().toLowerCase().trim(), searchForm.getCityId());
+        request.setAttribute("companies", companies);
         return mapping.findForward(ActionResult.SUCCESS);
     }
+
 }

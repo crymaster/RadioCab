@@ -214,19 +214,19 @@ public class CompanyDB {
                         + "`comFax` = ?, `comEmail` = ?, `comStatus` = ?, `mtID` = ? "
                         + "WHERE `comID` = ?");
 
-                pstmt.setString(1,item.getCom_Name());
-                pstmt.setString(2,item.getCom_Contactperson());
-                pstmt.setString(3,item.getCom_Designation());
-                pstmt.setString(4,item.getCom_Image());
-                pstmt.setInt(5,item.getCity_ID());
-                pstmt.setString(6,item.getCom_Address());
-                pstmt.setString(7,item.getCom_Mobile());
-                pstmt.setString(8,item.getCom_Tel());
-                pstmt.setString(9,item.getCom_Fax());
-                pstmt.setString(10,item.getCom_Email());
-                pstmt.setInt(11,item.getCom_Status());
-                pstmt.setInt(12,item.getMem_ID());
-                pstmt.setInt(13,item.getCom_ID());
+                pstmt.setString(1, item.getCom_Name());
+                pstmt.setString(2, item.getCom_Contactperson());
+                pstmt.setString(3, item.getCom_Designation());
+                pstmt.setString(4, item.getCom_Image());
+                pstmt.setInt(5, item.getCity_ID());
+                pstmt.setString(6, item.getCom_Address());
+                pstmt.setString(7, item.getCom_Mobile());
+                pstmt.setString(8, item.getCom_Tel());
+                pstmt.setString(9, item.getCom_Fax());
+                pstmt.setString(10, item.getCom_Email());
+                pstmt.setInt(11, item.getCom_Status());
+                pstmt.setInt(12, item.getMem_ID());
+                pstmt.setInt(13, item.getCom_ID());
 
                 int kq = pstmt.executeUpdate();
                 if (kq != 0) {
@@ -251,20 +251,21 @@ public class CompanyDB {
                 pstmt = con.prepareStatement("INSERT INTO `" + ConfigDB.DBNAME + "`.`tblCompany` (`comUsername`, `comPass`, "
                         + "`comName`, `comContactPerson`, `comDesignation`, `comImageURL`, "
                         + "`citID`, `comAddress`, `comMobile`, `comTel`, `comFax`, "
-                        + "`comEmail`, `mtID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
-                pstmt.setString(1,item.getCom_uName());
-                pstmt.setString(2,item.getCom_Pass());
-                pstmt.setString(3,item.getCom_Name());
-                pstmt.setString(4,item.getCom_Contactperson());
-                pstmt.setString(5,item.getCom_Designation());
-                pstmt.setString(6,item.getCom_Image());
-                pstmt.setInt(7,item.getCity_ID());
-                pstmt.setString(8,item.getCom_Address());
-                pstmt.setString(9,item.getCom_Mobile());
-                pstmt.setString(10,item.getCom_Tel());
-                pstmt.setString(11,item.getCom_Fax());
-                pstmt.setString(12,item.getCom_Email());
-                pstmt.setInt(13,item.getMem_ID());
+                        + "`comEmail`, `mtID`, `comStatus`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                pstmt.setString(1, item.getCom_uName());
+                pstmt.setString(2, item.getCom_Pass());
+                pstmt.setString(3, item.getCom_Name());
+                pstmt.setString(4, item.getCom_Contactperson());
+                pstmt.setString(5, item.getCom_Designation());
+                pstmt.setString(6, item.getCom_Image());
+                pstmt.setInt(7, item.getCity_ID());
+                pstmt.setString(8, item.getCom_Address());
+                pstmt.setString(9, item.getCom_Mobile());
+                pstmt.setString(10, item.getCom_Tel());
+                pstmt.setString(11, item.getCom_Fax());
+                pstmt.setString(12, item.getCom_Email());
+                pstmt.setInt(13, item.getMem_ID());
+                pstmt.setInt(14, item.getCom_Status());
                 int kq = pstmt.executeUpdate();
                 if (kq != 0) {
                     pstmt = con.prepareStatement("SELECT LAST_INSERT_ID()");
@@ -281,6 +282,55 @@ public class CompanyDB {
             disconnect();
         }
         return lastid;
+    }
+
+    public static List<CompanyBean> search(String comName, int cityId) {
+        List<CompanyBean> list = new ArrayList<CompanyBean>();
+        try {
+            if (!connect()) {
+                return list;
+            } else {
+                comName += "%";
+                String sql = "SELECT * FROM tblCompany "
+                        + " INNER JOIN tblCity ON tblCompany.citID = tblCity.citID"
+                        + " WHERE comStatus = 1 "
+                        + " AND ( comUsername LIKE '" + comName + "' OR comName LIKE '" + comName + "')";
+                if (cityId != 0) {
+                    sql += "AND tblCity.citID = " + cityId;
+                }
+                Statement stmt = con.createStatement();
+
+                ResultSet rs = stmt.executeQuery(sql);
+                while (rs.next()) {
+                    CompanyBean item = new CompanyBean();
+                    item.setCom_ID(rs.getInt("comID"));
+                    item.setCom_uName(rs.getString("comUsername"));
+                    item.setCom_Pass(rs.getString("comPass"));
+                    item.setCom_Name(rs.getString("comName"));
+                    item.setCom_Contactperson(rs.getString("comContactPerson"));
+                    item.setCom_Designation(rs.getString("comDesignation"));
+                    item.setCom_Image(rs.getString("comImageURL"));
+                    item.setCity_ID(rs.getInt("citID"));
+                    item.setCity_Name(rs.getString("citName"));
+                    item.setCom_Address(rs.getString("comAddress"));
+                    item.setCom_Mobile(rs.getString("comMobile"));
+                    item.setCom_Tel(rs.getString("comTel"));
+                    item.setCom_Fax(rs.getString("comFax"));
+                    item.setCom_Email(rs.getString("comEmail"));
+                    item.setCom_RegDate(rs.getTimestamp("comRegDate"));
+                    item.setCom_Status(rs.getInt("comStatus"));
+                    item.setMem_ID(rs.getInt("mtID"));
+                    list.add(item);
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyDB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            disconnect();
+        }
+
+        return list;
     }
 
 //    public static int countTotalGroup(){

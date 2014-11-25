@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beans;
 
 import db.ConfigApp;
@@ -14,24 +13,25 @@ import java.sql.Timestamp;
  * @author quangphamngoc
  */
 public class CompanyBean {
+
     private int Com_ID;
-    private String Com_uName;
-    private String Com_Pass;
-    private String Com_Name;
-    private String Com_Contactperson;
-    private String Com_Designation;
-    private String Com_Image;
-    private int City_ID;
-    private String City_Name;
-    private String Com_Address;
-    private String Com_Mobile;
-    private String Com_Tel;
-    private String Com_Fax;
-    private String Com_Email;
-    private Timestamp Com_RegDate;
-    private int Com_Status;
-    private int Mem_ID;
-    private String Mem_Name;
+    private String com_uName;
+    private String com_Pass;
+    private String com_Name;
+    private String com_Contactperson;
+    private String com_Designation;
+    private String com_Image;
+    private int city_ID;
+    private String city_Name;
+    private String com_Address;
+    private String com_Mobile;
+    private String com_Tel;
+    private String com_Fax;
+    private String com_Email;
+    private Timestamp com_RegDate;
+    private int com_Status;
+    private int mem_ID;
+    private String mem_Name;
 
     public int getCom_ID() {
         return Com_ID;
@@ -42,141 +42,140 @@ public class CompanyBean {
     }
 
     public String getCom_uName() {
-        return Com_uName;
+        return com_uName;
     }
 
-    public void setCom_uName(String Com_uName) {
-        this.Com_uName = Com_uName;
+    public void setCom_uName(String com_uName) {
+        this.com_uName = com_uName;
     }
 
     public String getCom_Pass() {
-        return Com_Pass;
+        return com_Pass;
     }
 
-    public void setCom_Pass(String Com_Pass) {
-        this.Com_Pass = Com_Pass;
+    public void setCom_Pass(String com_Pass) {
+        this.com_Pass = com_Pass;
     }
 
     public String getCom_Name() {
-        return Com_Name;
+        return com_Name;
     }
 
-    public void setCom_Name(String Com_Name) {
-        this.Com_Name = Com_Name;
+    public void setCom_Name(String com_Name) {
+        this.com_Name = com_Name;
     }
 
     public String getCom_Contactperson() {
-        return Com_Contactperson;
+        return com_Contactperson;
     }
 
-    public void setCom_Contactperson(String Com_Contactperson) {
-        this.Com_Contactperson = Com_Contactperson;
+    public void setCom_Contactperson(String com_Contactperson) {
+        this.com_Contactperson = com_Contactperson;
     }
 
     public String getCom_Designation() {
-        return Com_Designation;
+        return com_Designation;
     }
 
-    public void setCom_Designation(String Com_Designation) {
-        this.Com_Designation = Com_Designation;
+    public void setCom_Designation(String com_Designation) {
+        this.com_Designation = com_Designation;
     }
 
     public String getCom_Image() {
-        return Com_Image;
+        return com_Image;
     }
 
-    public void setCom_Image(String Com_Image) {
-        this.Com_Image = Com_Image;
+    public void setCom_Image(String com_Image) {
+        this.com_Image = com_Image;
     }
 
     public int getCity_ID() {
-        return City_ID;
+        return city_ID;
     }
 
-    public void setCity_ID(int City_ID) {
-        this.City_ID = City_ID;
+    public void setCity_ID(int city_ID) {
+        this.city_ID = city_ID;
     }
 
     public String getCity_Name() {
-        return City_Name;
+        return city_Name;
     }
 
-    public void setCity_Name(String City_Name) {
-        this.City_Name = City_Name;
+    public void setCity_Name(String city_Name) {
+        this.city_Name = city_Name;
     }
 
     public String getCom_Address() {
-        return Com_Address;
+        return com_Address;
     }
 
-    public void setCom_Address(String Com_Address) {
-        this.Com_Address = Com_Address;
+    public void setCom_Address(String com_Address) {
+        this.com_Address = com_Address;
     }
 
     public String getCom_Mobile() {
-        return Com_Mobile;
+        return com_Mobile;
     }
 
-    public void setCom_Mobile(String Com_Mobile) {
-        this.Com_Mobile = Com_Mobile;
+    public void setCom_Mobile(String com_Mobile) {
+        this.com_Mobile = com_Mobile;
     }
 
     public String getCom_Tel() {
-        return Com_Tel;
+        return com_Tel;
     }
 
-    public void setCom_Tel(String Com_Tel) {
-        this.Com_Tel = Com_Tel;
+    public void setCom_Tel(String com_Tel) {
+        this.com_Tel = com_Tel;
     }
 
     public String getCom_Fax() {
-        return Com_Fax;
+        return com_Fax;
     }
 
-    public void setCom_Fax(String Com_Fax) {
-        this.Com_Fax = Com_Fax;
+    public void setCom_Fax(String com_Fax) {
+        this.com_Fax = com_Fax;
     }
 
     public String getCom_Email() {
-        return Com_Email;
+        return com_Email;
     }
 
-    public void setCom_Email(String Com_Email) {
-        this.Com_Email = Com_Email;
+    public void setCom_Email(String com_Email) {
+        this.com_Email = com_Email;
     }
 
     public Timestamp getCom_RegDate() {
-        return Com_RegDate;
+        return com_RegDate;
     }
 
-    public void setCom_RegDate(Timestamp Com_RegDate) {
-        this.Com_RegDate = Com_RegDate;
+    public void setCom_RegDate(Timestamp com_RegDate) {
+        this.com_RegDate = com_RegDate;
     }
 
     public int getCom_Status() {
-        return Com_Status;
+        return com_Status;
     }
 
-    public void setCom_Status(int Com_Status) {
-        this.Com_Status = Com_Status;
+    public void setCom_Status(int com_Status) {
+        this.com_Status = com_Status;
     }
 
     public int getMem_ID() {
-        return Mem_ID;
+        return mem_ID;
     }
 
-    public void setMem_ID(int Mem_ID) {
-        this.Mem_ID = Mem_ID;
+    public void setMem_ID(int mem_ID) {
+        this.mem_ID = mem_ID;
     }
 
     public String getMem_Name() {
-        return Mem_Name;
+        return mem_Name;
     }
 
-    public void setMem_Name(String Mem_Name) {
-        this.Mem_Name = Mem_Name;
+    public void setMem_Name(String mem_Name) {
+        this.mem_Name = mem_Name;
     }
-  
 
     /**
      * @return the statusAsString
@@ -184,7 +183,7 @@ public class CompanyBean {
     public String getStatusAsString() {
         //Tuy thuoc vao gia tri cua status
         //Dung string luu trong class ConfigApp
-        switch (Com_Status){
+        switch (com_Status) {
             case 1:
                 return ConfigApp.statusOK;
             case 0:
@@ -194,6 +193,5 @@ public class CompanyBean {
         }
         return "";
     }
-    
-    
+
 }

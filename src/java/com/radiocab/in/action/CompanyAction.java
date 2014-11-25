@@ -9,6 +9,7 @@ import beans.CityBean;
 import beans.MembertypeBean;
 import beans.PaymenttypeBean;
 import com.radiocab.in.actionform.RegisterCompanyForm;
+import com.radiocab.in.actionform.SearchCompanyForm;
 import db.CityDB;
 import db.MembertypeDB;
 import db.PaymenttypeDB;
@@ -40,6 +41,13 @@ public class CompanyAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        SearchCompanyForm searchForm = (SearchCompanyForm) form;
+        ArrayList<CityBean> cities = (ArrayList) CityDB.getAllAvailableCity();
+        CityBean allCity = new CityBean();
+        allCity.setCity_ID(0);
+        allCity.setCity_Name("Whole country");
+        cities.add(allCity);
+        searchForm.setCityList(cities);
         return mapping.findForward(ActionResult.SUCCESS);
     }
 }

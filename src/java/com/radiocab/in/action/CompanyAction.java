@@ -18,15 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import utils.ActionResult;
 
 /**
  *
  * @author Son
  */
-public class ListingAction extends org.apache.struts.action.Action {
-
-    /* forward name="success" path="" */
-    private static final String SUCCESS = "success";
+public class CompanyAction extends org.apache.struts.action.Action {
 
     /**
      * This is the action called from the Struts framework.
@@ -42,13 +40,6 @@ public class ListingAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        RegisterCompanyForm regForm = (RegisterCompanyForm) form;
-        ArrayList<CityBean> cities = (ArrayList)CityDB.getAllAvailableCity();
-        ArrayList<MembertypeBean> members = (ArrayList)MembertypeDB.getAllAvailableMembertype();
-        ArrayList<PaymenttypeBean> payments = (ArrayList) PaymenttypeDB.getPaymentTypeByPtFor("Company");
-        regForm.setCityList(cities);
-        regForm.setMembershipTypeList(members);
-        regForm.setPaymentTypeList(payments);
-        return mapping.findForward(SUCCESS);
+        return mapping.findForward(ActionResult.SUCCESS);
     }
 }

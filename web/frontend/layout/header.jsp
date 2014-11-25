@@ -12,7 +12,7 @@
                 <nav class="horizontal-nav full-width horizontalNav-notprocessed">
                     <ul class="sf-menu">
                         <li class="current"><a href="homepage.do">Home</a></li>
-                        <li><a href="listing.do">Listing</a></li>
+                        <li><a href="company.do">Company</a></li>
                         <li><a href="drivers.do">Drivers</a></li>
                         <li><a href="advertises.do">Advertises</a></li>
                         <li><a href="services.do">Services</a></li>

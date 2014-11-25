@@ -20,13 +20,17 @@
             <forward name="success" path="/frontend/index.jsp"/>
         </action>
         
-        <action path="/listing" type="com.radiocab.in.action.ListingAction" name="registerCompanyForm">
-            <forward name="success" path="/frontend/listing.jsp"/>
+        <action path="/company" type="com.radiocab.in.action.CompanyAction">
+            <forward name="success" path="/frontend/company/company.jsp"/>
         </action>
         
-        <!-- Handle register form on /listing -->
+        <!-- Handle register company -->
         <action path="/register-company" type="com.radiocab.in.action.RegisterCompanyAction" name="registerCompanyForm">
-            <forward name="failure" path="/frontend/listing.jsp"/>
+            <forward name="success" path="/frontend/company/registerCompany.jsp"/>
+        </action>
+        
+        <action path="/register-company-handler" type="com.radiocab.in.action.RegisterCompanyHandlerAction" name="registerCompanyForm">
+            <forward name="failure" path="/frontend/company/registerCompany.jsp"/>
         </action>
         
     </action-mappings>

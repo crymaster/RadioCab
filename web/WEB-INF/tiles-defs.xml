@@ -36,7 +36,7 @@
 
     end samples -->
 
-    <definition name="default-layout" template="layout/layout.jsp">
+    <definition name="default-layout" template="/frontend/layout/layout.jsp">
         <put name="header" value="header.jsp"/>
         <put name="footer" value="footer.jsp"/>
     </definition>

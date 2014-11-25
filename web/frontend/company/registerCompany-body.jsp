@@ -1,9 +1,9 @@
 <%-- 
-    Document   : listing-body
-    Created on : Nov 23, 2014, 6:34:17 PM
-    Author     : Son
+    Document   : company-register-body
+    Created on : Nov 25, 2014, 2:52:36 PM
+    Author     : son
 --%>
-<%@page import="org.apache.struts.action.ActionMessage"%>
+
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
@@ -17,7 +17,7 @@
             <c:forEach items="${requestScope.errors}" var="error">
                 <bean:message key="${error}"/>
             </c:forEach>
-            <html:form action="/register-company">
+            <html:form action="/register-company-handler">
                 Company Name: <html:text property="comUsername"/>
                 <br/>
                 <br/>

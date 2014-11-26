@@ -313,6 +313,44 @@ public class DriverDB {
         return list;
     }
     
+     public static DriverBean driverLogin(String drvName, String password) {
+        DriverBean item = null;
+        try {
+            if (!connect()) {
+                return null;
+            } else {
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM tblDriver inner join tblCity on tblDriver.citID = tblCity.citID WHERE drvUsername = '" + drvName+"' AND drvPass = '"+password+"'");
+                while (rs.next()) {
+                    item = new DriverBean();
+                    item.setDriver_ID(rs.getInt("drvID"));
+                    item.setDriver_uName(rs.getString("drvUsername"));
+                    item.setDriver_Pass(rs.getString("drvPass"));
+                    item.setDriver_Name(rs.getString("drvName"));
+                    item.setDriver_Contactperson(rs.getString("drvContactPerson"));
+                    item.setCity_ID(rs.getInt("citID"));
+                    item.setCity_Name(rs.getString("citName"));
+                    item.setDriver_Address(rs.getString("drvAddress"));
+                    item.setDriver_Image(rs.getString("drvImage"));
+                    item.setDriver_Mobile(rs.getString("drvMobile"));
+                    item.setDriver_Tel(rs.getString("drvTel"));
+                    item.setDriver_Email(rs.getString("drvEmail"));
+                    item.setDriver_Exp(rs.getString("drvExp"));
+                    item.setDriver_Description(rs.getString("drvDescription"));
+                    item.setDriver_RegDate(rs.getTimestamp("drvRegDate"));
+                    item.setDriver_Status(rs.getInt("drvStatus"));
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DriverDB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            disconnect();
+        }
+
+        return item;
+    }
+    
 //    public static int countTotalGroup(){
 //        int count = 0;
 //        try {

@@ -332,6 +332,49 @@ public class CompanyDB {
 
         return list;
     }
+    
+    public static CompanyBean companyLogin(String comUsername,String password) {
+        CompanyBean item = null;
+        try {
+            if (!connect()) {
+                return null;
+            } else {
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM tblCompany "
+                        + "inner join tblCity on tblCompany.citID = tblCity.citID "
+                        + "inner join tblMembershipType on tblCompany.mtID = tblMembershipType.mtID "
+                        + "WHERE comUsername = '" + comUsername+ "' AND comPass = '"+password+"'");
+                while (rs.next()) {
+                    item = new CompanyBean();
+                    item.setCom_ID(rs.getInt("comID"));
+                    item.setCom_uName(rs.getString("comUsername"));
+                    item.setCom_Pass(rs.getString("comPass"));
+                    item.setCom_Name(rs.getString("comName"));
+                    item.setCom_Contactperson(rs.getString("comContactPerson"));
+                    item.setCom_Designation(rs.getString("comDesignation"));
+                    item.setCom_Image(rs.getString("comImageURL"));
+                    item.setCity_ID(rs.getInt("citID"));
+                    item.setCity_Name(rs.getString("citName"));
+                    item.setCom_Address(rs.getString("comAddress"));
+                    item.setCom_Mobile(rs.getString("comMobile"));
+                    item.setCom_Tel(rs.getString("comTel"));
+                    item.setCom_Fax(rs.getString("comFax"));
+                    item.setCom_Email(rs.getString("comEmail"));
+                    item.setCom_RegDate(rs.getTimestamp("comRegDate"));
+                    item.setCom_Status(rs.getInt("comStatus"));
+                    item.setMem_ID(rs.getInt("mtID"));
+                    item.setMem_Name(rs.getString("mtName"));
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyDB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            disconnect();
+        }
+
+        return item;
+    }
 
 //    public static int countTotalGroup(){
 //        int count = 0;

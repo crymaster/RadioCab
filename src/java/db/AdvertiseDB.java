@@ -202,11 +202,12 @@ public class AdvertiseDB {
                 lastid = -1;
             } else {
                 pstmt = con.prepareStatement("INSERT INTO `" + ConfigDB.DBNAME + "`.`tblAdvertise` (`comID`, "
-                        + "`advImageURL`, `advDescription`) "
-                        + "VALUES (?,?,?);");
+                        + "`advImageURL`, `advDescription`,`advStatus`) "
+                        + "VALUES (?,?,?,?);");
                 pstmt.setInt(1,item.getCom_ID());
                 pstmt.setString(2,item.getAdv_Image());
                 pstmt.setString(3,item.getAdv_Description());
+                pstmt.setInt(4, item.getAdv_Status());
                 int kq = pstmt.executeUpdate();
                 if (kq != 0) {
                     pstmt = con.prepareStatement("SELECT LAST_INSERT_ID()");

@@ -4,6 +4,7 @@
     Author     : Son
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--==============================header=================================-->
 <header>
     <div class="menu_block ">
@@ -17,6 +18,16 @@
                         <li><a href="advertises.do">Advertises</a></li>
                         <li><a href="services.do">Services</a></li>
                         <li><a href="feedback.do">Feedback</a></li>
+                        <% boolean loggedIn = false; %>
+                        <c:forEach items="${cookie}" var="item">
+                            <c:if test="${item.key == 'rcUsername'}">
+                                <% loggedIn = true;%>
+                                <li><a href="profile.do">Profile</a></li>
+                            </c:if>
+                        </c:forEach>
+                        <c:if test="${loggedIn == false}">
+                            <li><a href="login.do">Login</a></li>
+                        </c:if>
                     </ul>
                 </nav>
                 <div class="clear"></div>

@@ -7,8 +7,11 @@ package com.radiocab.in.action;
 
 import beans.CompanyBean;
 import beans.DriverBean;
+import beans.PaymentBean;
 import db.CompanyDB;
 import db.DriverDB;
+import db.PaymentDB;
+import java.util.ArrayList;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,9 +47,13 @@ public class ProfileAction extends Action{
         if(type.equals("company")){
             CompanyBean company = CompanyDB.getCompanyByID(userId);
             request.setAttribute("company", company);
+            ArrayList<PaymentBean> payments = (ArrayList<PaymentBean>)PaymentDB.getPaymentByComId(company.getCom_ID());
+            request.setAttribute("cPayment", payments);
         } else if(type.equals("driver")){
             DriverBean driver = DriverDB.getDriverByID(userId);
             request.setAttribute("driver", driver);
+            PaymentBean payment = PaymentDB.getPaymentByDriverId(driver.getDriver_ID());
+            request.setAttribute("dPayment", payment);
         }
         return mapping.findForward(ActionResult.SUCCESS);
     }

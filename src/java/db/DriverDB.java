@@ -263,7 +263,7 @@ public class DriverDB {
         } finally {
             disconnect();
         }
-        PermissionDB.addPermission(lastid);
+        //PermissionDB.addPermission(lastid);
         return lastid;
     }
 

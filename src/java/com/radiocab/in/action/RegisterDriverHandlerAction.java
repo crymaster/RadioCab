@@ -61,18 +61,19 @@ public class RegisterDriverHandlerAction extends Action {
             regForm.setPaymentTypeList(payments);
             return mapping.findForward(ActionResult.FAILURE);
         } else {
-//            PaymentBean payment = new PaymentBean();
-//            payment.setPaytype_ID(regForm.getPaymentType());
-//            payment.setDriver_ID(driver.getDriver_ID());
-//            Date today = new Date();
-//            payment.setPay_Time(new Timestamp(today.getTime()));
-//            payment.setPay_Status(1);
-//
-//            if (!PaymentDB.addPayment(payment)) {
-//                errors.add("registerError");
-//                request.setAttribute("errors", errors);
-//                return mapping.findForward(ActionResult.FAILURE);
-//            }
+            driver.setDriver_ID(id);
+            PaymentBean payment = new PaymentBean();
+            payment.setPaytype_ID(regForm.getPaymentType());
+            payment.setDriver_ID(driver.getDriver_ID());
+            Date today = new Date();
+            payment.setPay_Time(new Timestamp(today.getTime()));
+            payment.setPay_Status(1);
+
+            if (!PaymentDB.addPayment(payment)) {
+                errors.add("registerError");
+                request.setAttribute("errors", errors);
+                return mapping.findForward(ActionResult.FAILURE);
+            }
             
             Cookie cookie = new Cookie("rcUsername", driver.getDriver_uName());
             cookie.setMaxAge(60 * 60); //1 hour

@@ -85,13 +85,13 @@ public class PaymentDB {
                     PaymentBean item = new PaymentBean();
                     item.setPay_ID(rs.getInt("payID"));
                     item.setPaytype_ID(rs.getInt("ptID"));
-                    if(String.valueOf(rs.getInt("comID")).length() > 0){
+                    if (String.valueOf(rs.getInt("comID")).length() > 0) {
                         item.setCom_ID(rs.getInt("comID"));
                     }
-                    if(String.valueOf(rs.getInt("advID")).length() > 0){
+                    if (String.valueOf(rs.getInt("advID")).length() > 0) {
                         item.setCom_ID(rs.getInt("advID"));
                     }
-                    if(String.valueOf(rs.getInt("drvID")).length() > 0){
+                    if (String.valueOf(rs.getInt("drvID")).length() > 0) {
                         item.setCom_ID(rs.getInt("drvID"));
                     }
                     item.setPay_Time(rs.getTimestamp("payTime"));
@@ -111,7 +111,6 @@ public class PaymentDB {
         return list;
     }
 
-    
     public static PaymentBean getPaymentByID(int gr_id) {
         PaymentBean item = new PaymentBean();
         try {
@@ -124,13 +123,13 @@ public class PaymentDB {
                 while (rs.next()) {
                     item.setPay_ID(rs.getInt("payID"));
                     item.setPaytype_ID(rs.getInt("ptID"));
-                    if(String.valueOf(rs.getInt("comID")).length() > 0){
+                    if (String.valueOf(rs.getInt("comID")).length() > 0) {
                         item.setCom_ID(rs.getInt("comID"));
                     }
-                    if(String.valueOf(rs.getInt("advID")).length() > 0){
+                    if (String.valueOf(rs.getInt("advID")).length() > 0) {
                         item.setCom_ID(rs.getInt("advID"));
                     }
-                    if(String.valueOf(rs.getInt("drvID")).length() > 0){
+                    if (String.valueOf(rs.getInt("drvID")).length() > 0) {
                         item.setCom_ID(rs.getInt("drvID"));
                     }
                     item.setPay_Time(rs.getTimestamp("payTime"));
@@ -148,14 +147,14 @@ public class PaymentDB {
 
         return item;
     }
-   
+
     public static boolean confirmPayment(int payid) {
         boolean success = false;
         try {
             if (!connect()) {
 
             } else {
-                pstmt = con.prepareStatement("UPDATE `"+ConfigDB.DBNAME+"`.`tblPayment` SET `payStatus`='1' WHERE `payID`=?;");
+                pstmt = con.prepareStatement("UPDATE `" + ConfigDB.DBNAME + "`.`tblPayment` SET `payStatus`='1' WHERE `payID`=?;");
                 pstmt.setInt(1, payid);
                 int kq = pstmt.executeUpdate();
                 if (kq != 0) {
@@ -170,15 +169,14 @@ public class PaymentDB {
         }
         return success;
     }
-   
-    
+
     public static boolean cancelPayment(int payid) {
         boolean success = false;
         try {
             if (!connect()) {
 
             } else {
-                pstmt = con.prepareStatement("UPDATE `"+ConfigDB.DBNAME+"`.`tblPayment` SET `payStatus`='0' WHERE `payID`=?;");
+                pstmt = con.prepareStatement("UPDATE `" + ConfigDB.DBNAME + "`.`tblPayment` SET `payStatus`='0' WHERE `payID`=?;");
                 pstmt.setInt(1, payid);
                 int kq = pstmt.executeUpdate();
                 if (kq != 0) {
@@ -193,6 +191,7 @@ public class PaymentDB {
         }
         return success;
     }
+
     public static boolean addPayment(PaymentBean item) {
         boolean returnValue = true;
         connect();
@@ -201,19 +200,30 @@ public class PaymentDB {
                 returnValue = false;
             } else {
                 pstmt = con.prepareStatement("INSERT INTO `" + ConfigDB.DBNAME + "`.`tblPayment` (`ptID`, `comID`, "
-                        + "`advID`, `drvID`) "
-                        + "VALUES (?,?,?,?);");
-                pstmt.setInt(1,item.getPaytype_ID());
-                pstmt.setInt(2,item.getCom_ID());
-                pstmt.setInt(3,item.getAdv_ID());
-                pstmt.setInt(4,item.getDriver_ID());
+                        + "`advID`, `drvID`, `payTotal`) "
+                        + "VALUES (?,?,?,?,?);");
+                pstmt.setInt(1, item.getPaytype_ID());
+                if(item.getCom_ID() == 0)
+                    pstmt.setNull(2, java.sql.Types.INTEGER);
+                else
+                    pstmt.setInt(2, item.getCom_ID());
+                if(item.getAdv_ID() == 0)
+                    pstmt.setNull(3, java.sql.Types.INTEGER);
+                else
+                    pstmt.setInt(3, item.getAdv_ID());
+                if(item.getDriver_ID() == 0)
+                    pstmt.setNull(4, java.sql.Types.INTEGER);
+                else
+                    pstmt.setInt(4, item.getDriver_ID());
+                pstmt.setFloat(5, item.getPay_Total());
                 int kq = pstmt.executeUpdate();
-                if (kq != 0) {
-                   returnValue = false;
+                if (kq == 0) {
+                    returnValue = false;
                 }
             }
 
         } catch (SQLException ex) {
+            returnValue = false;
             Logger.getLogger(PaymentDB.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             disconnect();

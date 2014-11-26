@@ -8,11 +8,13 @@ package com.radiocab.in.action;
 import beans.CityBean;
 import beans.CompanyBean;
 import beans.MembertypeBean;
+import beans.PaymentBean;
 import beans.PaymenttypeBean;
 import com.radiocab.in.actionform.RegisterCompanyForm;
 import db.CityDB;
 import db.CompanyDB;
 import db.MembertypeDB;
+import db.PaymentDB;
 import db.PaymenttypeDB;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -77,19 +79,21 @@ public class RegisterCompanyHandlerAction extends org.apache.struts.action.Actio
             regForm.setPaymentTypeList(payments);
             return mapping.findForward(ActionResult.FAILURE);
         } else {
-            /*PaymentBean payment = new PaymentBean();
-             payment.setPaytype_ID(regForm.getPaymentType());
-             payment.setCom_ID(company.getCom_ID());
-             Date today = new Date();
-             payment.setPay_Time(new Timestamp(today.getTime()));
-             payment.setPay_Status(1);
-            
-             if(!PaymentDB.addPayment(payment)){
-             errors.add("registerError");
-             request.setAttribute("errors", errors);
-             return mapping.findForward(ActionResult.FAILURE);
-             }
-             */
+            company.setCom_ID(id);
+            PaymentBean payment = new PaymentBean();
+            payment.setPaytype_ID(regForm.getPaymentType());
+            payment.setCom_ID(id);
+            Date today = new Date();
+            payment.setPay_Time(new Timestamp(today.getTime()));
+            payment.setPay_Total(0);
+            payment.setPay_Status(1);
+
+            if (!PaymentDB.addPayment(payment)) {
+                errors.add("registerError");
+                request.setAttribute("errors", errors);
+                return mapping.findForward(ActionResult.FAILURE);
+            }
+
             Cookie cookie = new Cookie("rcUsername", company.getCom_uName());
             cookie.setMaxAge(60 * 60); //1 hour
             response.addCookie(cookie);

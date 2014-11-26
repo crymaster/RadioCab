@@ -13,20 +13,21 @@
     <div class="container_12">
         <div class="grid_12">
             <h3>Taxi Company Advertisement</h3>
+            <a> <a href="order-advertise.do" class="bigLink" style="padding-top: 0px">Advertise your company</a>
         </div>
         <div class="clear"></div>
         <% int count = 0; %>
         <c:forEach items="${requestScope.advs}" var="adv">
-            <% if(count%3 == 0) {%>
+            <% if(count%2 == 0) {%>
             <div class="gallery">
             <% } %>
-            <div class="grid_4">
-                <a href="frontend/images/<c:out value="${adv.adv_Image}"/>" class="gal"><img src="frontend/images/<c:out value="${adv.adv_Image}"/>" alt=""></a>
-                <c:out value="${adv.adv_Description}"/>
+            <% count++; %>
+            <div class="grid_6">
+                <a href="frontend/images/<c:out value="${adv.adv_Image}"/>" class="type" style="margin-top: 0px"><img src="frontend/images/<c:out value="${adv.adv_Image}"/>" alt=""><span class="type_caption"><c:out value="${adv.com_Name}"/></span></a>
             </div>    
-            <% if(count%3 == 0) {%>
+            <% if(count%2 == 0) {%>
             </div>
             <% } %>
-            <% count++; %>
         </c:forEach>
     </div>
+</div>

@@ -78,9 +78,15 @@
         <!-- Log in -->
         <action path="/login" type="com.radiocab.in.action.LoginAction" name="loginForm">
             <forward name="input" path="/frontend/login.jsp"/>
-            <forward name="success" path="/frontend/index.jsp" redirect="true"/>
+            <forward name="success" path="/homepage.do" redirect="true"/>
             <forward name="failure" path="/frontend/login.jsp"/>
         </action>
+        
+        <!-- Profile -->
+        <action path="/profile" type="com.radiocab.in.action.ProfileAction">
+            <forward name="success" path="/frontend/profile.jsp"/>
+        </action>
+            
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>

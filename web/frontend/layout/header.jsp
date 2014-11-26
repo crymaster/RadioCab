@@ -25,9 +25,9 @@
                                 <li><a href="profile.do">Profile</a></li>
                             </c:if>
                         </c:forEach>
-                        <c:if test="${loggedIn == false}">
+                        <% if(!loggedIn) {%>
                             <li><a href="login.do">Login</a></li>
-                        </c:if>
+                        <% } %>
                     </ul>
                 </nav>
                 <div class="clear"></div>

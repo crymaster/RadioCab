@@ -16,7 +16,7 @@ public class AdvertiseBean {
 
     private int adv_ID;
     private int com_ID;
-    private String Com_Name;
+    private String com_Name;
     private String adv_Image;
     private Timestamp adv_Regdate;
     private String adv_Description;
@@ -39,11 +39,11 @@ public class AdvertiseBean {
     }
 
     public String getCom_Name() {
-        return Com_Name;
+        return com_Name;
     }
 
-    public void setCom_Name(String Com_Name) {
-        this.Com_Name = Com_Name;
+    public void setCom_Name(String com_Name) {
+        this.com_Name = com_Name;
     }
 
     public String getAdv_Image() {

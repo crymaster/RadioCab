@@ -62,7 +62,7 @@ public class LoginAction extends Action {
                     cookie = new Cookie("rcUserId", driver.getDriver_ID() + "");
                     cookie.setMaxAge(60 * 60); //1 hour
                     response.addCookie(cookie);
-                    cookie = new Cookie("rcUserType", "company");
+                    cookie = new Cookie("rcUserType", "driver");
                     cookie.setMaxAge(60 * 60); //1 hour
                     response.addCookie(cookie);
                     return mapping.findForward(ActionResult.SUCCESS);

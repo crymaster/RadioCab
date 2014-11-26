@@ -1,0 +1,62 @@
+<%-- 
+    Document   : profile
+    Created on : Nov 27, 2014, 1:02:46 AM
+    Author     : son
+--%>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<div class="content">
+    <div class="container_12">
+        <div class="grid_5 prefix_1">
+            <h3 style="text-align: center">
+                <c:if test="${not empty company}">
+                    <c:out value="${company.com_uName}"/>
+                </c:if>
+                <c:if test="${not empty driver}">
+                    <c:out value="${driver.driver_uName}"/>
+                </c:if>
+            </h3>
+            <img src="frontend/images/page2_img1.jpg" alt="" style="padding-left:50px"/>
+        </div>
+        <div class="grid_5 ">
+            <div class="map" style="padding-top: 150px">
+                <c:if test="${not empty company}">
+                    <div class="text1 color2">Display Company Name: <c:out value="${company.com_Name}"/></div>
+                    Contact Person:<span class="color1"><c:out value="${company.com_Contactperson}"/></span><br/>
+                    Designation:<span class="color1"><c:out value="${company.com_Designation}"/></span><br/>
+                    <address>
+                        <dl>
+                            <dt>Address: <c:out value="${company.com_Address}"/>
+                            </dt>
+                            <dd>City: <c:out value="${company.city_Name}"/></dd>
+                            <dd><span>Mobile: </span> <c:out value="${company.com_Mobile}"/></dd>
+                            <dd><span>Telephone: </span> <c:out value="${company.com_Tel}"/></dd>
+                            <dd><span>FAX: </span><c:out value="${company.com_Fax}"/></dd>
+                            <dd>E-mail: <a href="#" class="color1"><c:out value="${company.com_Email}"/></a></dd>
+                        </dl>
+                    </address>
+                </c:if>
+                <c:if test="${not empty driver}">
+                    <div class="text1 color2">Driver Name: <c:out value="${driver.driver_Name}"/></div>
+                    Contact Person:<span class="color1"><c:out value="${driver.driver_Contactperson}"/></span><br/>
+                    <address>
+                        <dl>
+                            <dt>Address: <c:out value="${driver.driver_Address}"/>
+                            </dt>
+                            <dd>City: <c:out value="${driver.city_Name}"/></dd>
+                            <dd><span>Mobile: </span> <c:out value="${driver.driver_Mobile}"/></dd>
+                            <dd><span>Telephone: </span> <c:out value="${driver.driver_Tel}"/></dd>
+                            <dd>E-mail: <a href="#" class="color1"><c:out value="${driver.driver_Email}"/></a></dd>
+                            <dd>Experience: <c:out value="${driver.driver_Exp}"/></dd>
+                            <dd>Description: <c:out value="${driver.driver_Description}"/></dd>
+                        </dl>
+                    </address>
+                </c:if>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

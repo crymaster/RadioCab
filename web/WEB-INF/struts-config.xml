@@ -11,6 +11,7 @@
         <form-bean type="com.radiocab.in.actionform.SearchCompanyForm" name="searchCompanyForm"/>
         <form-bean type="com.radiocab.in.actionform.RegisterDriverForm" name="registerDriverForm"/>
         <form-bean type="com.radiocab.in.actionform.SearchDriverForm" name="searchDriverForm"/>
+        <form-bean type="com.radiocab.in.actionform.OrderAdvertiseForm" name="orderAdvertiseForm"/>
     </form-beans>
     
     <global-exceptions>
@@ -57,6 +58,15 @@
         
         <action path="/register-driver-handler" type="com.radiocab.in.action.RegisterDriverHandlerAction" name="registerDriverForm">
             <forward name="failure" path="/frontend/driver/registerDriver.jsp"/>
+        </action>
+        
+        <!-- Handle order advertise -->
+        <action path="/order-advertise" type="com.radiocab.in.action.OrderAdvertiseAction" name="orderAdvertiseForm">
+            <forward name="success" path="/frontend/advertise/orderAdvertise.jsp"/>
+        </action>
+        
+        <action path="/order-advertise-handler" type="com.radiocab.in.action.OrderAdvertiseHandlerAction" name="orderAdvertiseForm">
+            <forward name="failure" path="/frontend/advertise/orderAdvertise.jsp"/>
         </action>
     </action-mappings>
     

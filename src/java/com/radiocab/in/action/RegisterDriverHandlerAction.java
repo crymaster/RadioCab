@@ -25,6 +25,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import utils.ActionResult;
+import utils.EmailValidator;
+import utils.PhoneNumberValidator;
 
 /**
  *
@@ -36,6 +38,40 @@ public class RegisterDriverHandlerAction extends Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
         ArrayList errors = new ArrayList();
         RegisterDriverForm regForm = (RegisterDriverForm) form;
+        if(regForm.getDrvUsername() == null || regForm.getDrvUsername().trim().equals("")){
+            errors.add("error.drvUsername.required");
+        }
+        if(regForm.getDrvName()== null || regForm.getDrvName().trim().equals("")){
+            errors.add("error.drvName.required");
+        }
+        if(regForm.getDrvPass()== null || regForm.getDrvPass().equals("")){
+            errors.add("error.pass.required");
+        }
+        if(regForm.getDrvPassConfirm()== null || regForm.getDrvUsername().equals("")){
+            errors.add("error.passconfirm.required");
+        }
+        if(regForm.getDrvAddress() == null || regForm.getDrvAddress().trim().equals("")){
+            errors.add("error.address.required");
+        }
+        if(!regForm.getDrvPass().equals(regForm.getDrvPassConfirm())){
+            errors.add("error.pass.notequal");
+        }
+        if(!regForm.getDrvMobile().equals("")){
+            if(!PhoneNumberValidator.validate(regForm.getDrvMobile()))
+                errors.add("error.mobile.wrongformat");
+        }
+        if(!regForm.getDrvTel().equals("")){
+            if(!PhoneNumberValidator.validate(regForm.getDrvTel()))
+                errors.add("error.tel.wrongformat");
+        }
+        if(!regForm.getDrvEmail().equals("")){
+            if(!EmailValidator.validate(regForm.getDrvEmail()))
+                errors.add("error.email.wrongformat");
+        }
+        if(errors.size()>0){
+            request.setAttribute("errors", errors);
+            return mapping.findForward(ActionResult.FAILURE);
+        }
         DriverBean driver = new DriverBean();
         driver.setDriver_uName(regForm.getDrvUsername());
         driver.setDriver_Pass(regForm.getDrvPass());

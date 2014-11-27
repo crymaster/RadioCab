@@ -15,7 +15,7 @@
         <div class="grid_6 prefix_1">
             <h3>Company Registration</h3>
             <c:forEach items="${requestScope.errors}" var="error">
-                <bean:message key="${error}"/>
+                <div class="error"><bean:message key="${error}"/></div>
             </c:forEach>
             <html:form action="/register-company-handler">
                 Company Name: <html:text property="comUsername"/>

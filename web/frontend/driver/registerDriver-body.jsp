@@ -15,7 +15,7 @@
         <div class="grid_6 prefix_1">
             <h3>Driver Registration</h3>
             <c:forEach items="${requestScope.errors}" var="error">
-                <bean:message key="${error}"/>
+                <div class="error"><bean:message key="${error}"/></div>
             </c:forEach>
             <html:form action="/register-driver-handler">
                 Driver User Name: <html:text property="drvUsername"/>

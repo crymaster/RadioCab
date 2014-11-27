@@ -36,6 +36,16 @@ public class LoginAction extends Action {
             return mapping.findForward(ActionResult.INPUT);
         } else {
             if (loginForm.getType().equals("company")) {
+                if (loginForm.getUsername()== null || loginForm.getUsername().trim().equals("")) {
+                    errors.add("error.loginName.required");
+                }
+                if (loginForm.getPassword()== null || loginForm.getPassword().trim().equals("")) {
+                    errors.add("error.pass.required");
+                }
+                if(errors.size() >0){
+                    request.setAttribute("errors", errors);
+                    return mapping.findForward(ActionResult.FAILURE);
+                }
                 CompanyBean company = CompanyDB.companyLogin(loginForm.getUsername(), loginForm.getPassword());
                 if (company != null) {
                     Cookie cookie = new Cookie("rcUsername", company.getCom_uName());

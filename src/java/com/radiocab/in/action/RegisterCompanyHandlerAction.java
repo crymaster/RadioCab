@@ -26,6 +26,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import utils.ActionResult;
+import utils.EmailValidator;
+import utils.PhoneNumberValidator;
 
 /**
  *
@@ -50,6 +52,40 @@ public class RegisterCompanyHandlerAction extends org.apache.struts.action.Actio
             throws Exception {
         ArrayList errors = new ArrayList();
         RegisterCompanyForm regForm = (RegisterCompanyForm) form;
+        if(regForm.getComUsername() == null || regForm.getComUsername().trim().equals("")){
+            errors.add("error.comUsername.required");
+        }
+        if(regForm.getComPass()== null || regForm.getComPass().equals("")){
+            errors.add("error.pass.required");
+        }
+        if(regForm.getComPassConfirm()== null || regForm.getComUsername().equals("")){
+            errors.add("error.passconfirm.required");
+        }
+        if(regForm.getComAddress() == null || regForm.getComAddress().trim().equals("")){
+            errors.add("error.address.required");
+        }
+        if(regForm.getComName()== null || regForm.getComName().trim().equals("")){
+            errors.add("error.comName.required");
+        }
+        if(!regForm.getComPass().equals(regForm.getComPassConfirm())){
+            errors.add("error.pass.notequal");
+        }
+        if(!regForm.getComMobile().equals("")){
+            if(!PhoneNumberValidator.validate(regForm.getComMobile()))
+                errors.add("error.mobile.wrongformat");
+        }
+        if(!regForm.getComTel().equals("")){
+            if(!PhoneNumberValidator.validate(regForm.getComTel()))
+                errors.add("error.tel.wrongformat");
+        }
+        if(!regForm.getComEmail().equals("")){
+            if(!EmailValidator.validate(regForm.getComEmail()))
+                errors.add("error.email.wrongformat");
+        }
+        if(errors.size()>0){
+            request.setAttribute("errors", errors);
+            return mapping.findForward(ActionResult.FAILURE);
+        }
         CompanyBean company = new CompanyBean();
         company.setCom_uName(regForm.getComUsername());
         company.setCom_Pass(regForm.getComPass());
@@ -100,7 +136,7 @@ public class RegisterCompanyHandlerAction extends org.apache.struts.action.Actio
             cookie = new Cookie("rcUserId", company.getCom_ID() + "");
             cookie.setMaxAge(60 * 60); //1 hour
             response.addCookie(cookie);
-            cookie = new Cookie("rcUserType", "driver");
+            cookie = new Cookie("rcUserType", "company");
             cookie.setMaxAge(60 * 60); //1 hour
             response.addCookie(cookie);
             return mapping.findForward(ActionResult.SUCCESS);

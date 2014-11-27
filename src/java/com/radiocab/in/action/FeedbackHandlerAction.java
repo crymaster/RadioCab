@@ -18,6 +18,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import utils.ActionResult;
+import utils.EmailValidator;
+import utils.PhoneNumberValidator;
 
 /**
  *
@@ -28,6 +30,24 @@ public class FeedbackHandlerAction extends Action {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
         FeedbackForm fbForm = (FeedbackForm) form;
+        ArrayList errors = new ArrayList();
+        if(fbForm.getName()== null || fbForm.getName().trim().equals("")){
+            errors.add("error.fbName.required");
+        }
+        if(fbForm.getDescription()== null || fbForm.getDescription().trim().equals("")){
+            errors.add("error.fbDescription.required");
+        }
+        if(!PhoneNumberValidator.validate(fbForm.getMobile())){
+                errors.add("error.mobile.wrongformat");
+        }
+        if(!fbForm.getEmail().equals("")){
+            if(!EmailValidator.validate(fbForm.getEmail()))
+                errors.add("error.email.wrongformat");
+        }
+        if(errors.size()>0){
+            request.setAttribute("errors", errors);
+            return mapping.findForward(ActionResult.FAILURE);
+        }
         FeedbackBean fb = new FeedbackBean();
         fb.setFbName(fbForm.getName());
         fb.setFbType(fbForm.getType());

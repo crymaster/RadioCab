@@ -13,6 +13,7 @@
         <form-bean type="com.radiocab.in.actionform.SearchDriverForm" name="searchDriverForm"/>
         <form-bean type="com.radiocab.in.actionform.OrderAdvertiseForm" name="orderAdvertiseForm"/>
         <form-bean type="com.radiocab.in.actionform.LoginForm" name="loginForm"/>
+        <form-bean type="com.radiocab.in.actionform.FeedbackForm" name="feedbackForm"/>
     </form-beans>
     
     <global-exceptions>
@@ -40,6 +41,7 @@
         </action>
         
         <action path="/register-company-handler" type="com.radiocab.in.action.RegisterCompanyHandlerAction" name="registerCompanyForm">
+            <forward name="success" path="/profile.do" redirect="true"/>
             <forward name="failure" path="/frontend/company/registerCompany.jsp"/>
         </action>
         
@@ -58,6 +60,7 @@
         </action>
         
         <action path="/register-driver-handler" type="com.radiocab.in.action.RegisterDriverHandlerAction" name="registerDriverForm">
+            <forward name="success" path="/profile.do" redirect="true" />
             <forward name="failure" path="/frontend/driver/registerDriver.jsp"/>
         </action>
         
@@ -67,6 +70,7 @@
         </action>
         
         <action path="/order-advertise-handler" type="com.radiocab.in.action.OrderAdvertiseHandlerAction" name="orderAdvertiseForm">
+            <forward name="success" path="/advertises.do" redirect="true" />
             <forward name="failure" path="/frontend/advertise/orderAdvertise.jsp"/>
         </action>
         
@@ -86,7 +90,33 @@
         <action path="/profile" type="com.radiocab.in.action.ProfileAction">
             <forward name="success" path="/frontend/profile.jsp"/>
         </action>
-            
+        
+        <!-- Sign out -->
+        <action path="/logout" type="com.radiocab.in.action.LogoutAction">
+            <forward name="success" path="/homepage.do" redirect="true"/>
+        </action>
+        
+        <!-- Company detail -->
+        <action path="/company-detail" type="com.radiocab.in.action.CompanyDetailAction">
+            <forward name="success" path="/frontend/company/companyDetail.jsp" />
+            <forward name="failure" path="/companies.do" redirect="true"/>
+        </action>
+        
+        <!-- Driver detail -->
+        <action path="/driver-detail" type="com.radiocab.in.action.DriverDetailAction">
+            <forward name="success" path="/frontend/driver/driverDetail.jsp" />
+            <forward name="failure" path="/drivers.do" redirect="true"/>
+        </action>
+        
+        <!-- Feedback -->
+        <action path="/feedback" type="com.radiocab.in.action.FeedbackAction" name="feedbackForm">
+            <forward name="success" path="/frontend/feedback.jsp"/>
+        </action>
+        
+        <action path="/feedback-handler" type="com.radiocab.in.action.FeedbackHandlerAction" name="feedbackForm">
+            <forward name="success" path="/homepage.do" redirect="true"/>
+            <forward name="failure" path="/frontend/feedback.jsp"/>
+        </action>
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>

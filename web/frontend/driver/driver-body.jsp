@@ -13,7 +13,7 @@
 <div class="content">
     <div class="container_12">
 
-        <div class="grid_6">
+        <div class="grid_5 prefix_1">
 
             <h3>Search for Driver</h3>
             <html:form action="/search-driver.do">

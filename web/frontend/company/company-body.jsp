@@ -13,7 +13,7 @@
 <div class="content">
     <div class="container_12">
 
-        <div class="grid_6">
+        <div class="grid_6 prefix_1">
 
             <h3>Search for Company</h3>
             <html:form action="/search-company.do">
@@ -29,7 +29,7 @@
                 <html:submit value="Search" styleClass="btn"/>
             </html:form>
         </div>
-        <div class="grid_6">
+        <div class="grid_5">
             <a href="register-company.do" class="bigLink">Register your company</a>
         </div>
     </div>

@@ -223,6 +223,7 @@ DROP TABLE IF EXISTS `tblFeedback`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tblFeedback` (
   `fbID` int(11) NOT NULL AUTO_INCREMENT,
+  `fbName` varchar(50) NOT NULL,
   `fbType` varchar(50) NOT NULL,
   `fbMobile` varchar(20) NOT NULL,
   `fbEmail` varchar(50) NOT NULL,

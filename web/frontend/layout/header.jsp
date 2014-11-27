@@ -16,7 +16,6 @@
                         <li><a href="companies.do">Companies</a></li>
                         <li><a href="drivers.do">Drivers</a></li>
                         <li><a href="advertises.do">Advertises</a></li>
-                        <li><a href="services.do">Services</a></li>
                         <li><a href="feedback.do">Feedback</a></li>
                         <% boolean loggedIn = false; %>
                         <c:forEach items="${cookie}" var="item">
@@ -27,7 +26,9 @@
                         </c:forEach>
                         <% if(!loggedIn) {%>
                             <li><a href="login.do">Login</a></li>
-                        <% } %>
+                        <% } else { %>
+                            <li><a href="logout.do">Logout</a></li>
+                        <% }%>
                     </ul>
                 </nav>
                 <div class="clear"></div>

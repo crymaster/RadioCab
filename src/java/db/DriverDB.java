@@ -180,6 +180,7 @@ public class DriverDB {
             }
 
         } catch (SQLException ex) {
+            item = null;
             Logger.getLogger(DriverDB.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             disconnect();

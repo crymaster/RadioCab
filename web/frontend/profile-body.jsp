@@ -20,7 +20,12 @@
                     <c:out value="${driver.driver_uName}"/>
                 </c:if>
             </h3>
-            <img src="frontend/images/page2_img1.jpg" alt="" style="padding-left:50px"/>
+            <c:if test="${not empty company}">
+                <img src="upload/company/${company.com_Image}" alt="" style="padding-left:50px"/>
+            </c:if>
+            <c:if test="${not empty driver}">
+                <img src="upload/driver/${driver.driver_Image}" alt="" style="padding-left:50px"/>
+            </c:if>
         </div>
         <div class="grid_3 ">
             <div class="map" style="padding-top: 150px">

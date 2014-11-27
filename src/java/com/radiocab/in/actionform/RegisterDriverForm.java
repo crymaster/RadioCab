@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
 
 /**
  *
@@ -27,6 +28,7 @@ public class RegisterDriverForm extends ActionForm {
     private String drvMobile;
     private String drvTel;
     private String drvEmail;
+    private FormFile image;
     private String drvExp;
     private String drvDescription;
     private int paymentType;
@@ -111,6 +113,14 @@ public class RegisterDriverForm extends ActionForm {
 
     public void setDrvEmail(String drvEmail) {
         this.drvEmail = drvEmail;
+    }
+
+    public FormFile getImage() {
+        return image;
+    }
+
+    public void setImage(FormFile image) {
+        this.image = image;
     }
 
     public String getDrvExp() {

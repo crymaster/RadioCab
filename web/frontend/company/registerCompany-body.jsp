@@ -17,7 +17,7 @@
             <c:forEach items="${requestScope.errors}" var="error">
                 <div class="error"><bean:message key="${error}"/></div>
             </c:forEach>
-            <html:form action="/register-company-handler">
+            <html:form action="/register-company-handler" enctype="multipart/form-data">
                 Company Name: <html:text property="comUsername"/>
                 <br/>
                 <br/>
@@ -54,6 +54,9 @@
                 <br/>
                 <br/>
                 Email: <html:text property="comEmail"/>
+                <br/>
+                <br/>
+                Image: <html:file property="image" />
                 <br/>
                 <br/>
                 Membership: <html:select property="membershipType">

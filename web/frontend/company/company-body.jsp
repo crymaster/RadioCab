@@ -41,7 +41,7 @@
         <div class="grid_4">
             <div class="box">
                 <div class="maxheight">
-                    <img src="frontend/images/page4_img1.jpg" alt="">
+                    <img src="upload/company/${company.com_Image}" alt="">
                     <div class="text1 color2">
                         <a href="company-detail.do?id=<c:out value="${company.com_ID}"/>"><c:out value="${company.com_Name}"></c:out></a>
                         </div>

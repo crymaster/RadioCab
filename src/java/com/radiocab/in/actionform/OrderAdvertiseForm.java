@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
 
 /**
  *
@@ -18,6 +19,7 @@ import org.apache.struts.action.ActionMapping;
 public class OrderAdvertiseForm extends ActionForm {
 
     private String advDescription;
+    private FormFile image;
     private int paymentType;
     private ArrayList paymentTypeList;
 
@@ -43,6 +45,14 @@ public class OrderAdvertiseForm extends ActionForm {
 
     public void setPaymentTypeList(ArrayList paymentTypeList) {
         this.paymentTypeList = paymentTypeList;
+    }
+
+    public FormFile getImage() {
+        return image;
+    }
+
+    public void setImage(FormFile image) {
+        this.image = image;
     }
 
     @Override

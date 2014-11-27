@@ -12,7 +12,7 @@
     <div class="container_12">
         <div class="grid_4 prefix_1">
             <h3 style="padding-top: 50px; text-align: center"><c:out value="${driver.driver_Name}"/></h3>
-            <img src="frontend/images/page2_img1.jpg" alt="" class="img_inner fleft">
+            <img src="upload/driver/${driver.driver_Image}" alt="" class="img_inner fleft">
             <div class="text1 color2">
                 <p>Experience: <c:out value="${driver.driver_Exp}"/></p>
                 <p>Description: <c:out value="${driver.driver_Description}"/>

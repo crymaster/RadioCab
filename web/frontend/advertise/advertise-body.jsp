@@ -12,8 +12,8 @@
 <div class="content">
     <div class="container_12">
         <div class="grid_12">
-            <h3>Taxi Company Advertisement</h3>
-            <a> <a href="order-advertise.do" class="bigLink" style="padding-top: 0px">Advertise your company</a>
+            <h3 style="text-align: center">Taxi Company Advertisement</h3>
+            <a> <a href="order-advertise.do" class="bigLink" style="padding-top: 0px; text-align: center">Advertise your company</a>
         </div>
         <div class="clear"></div>
         <% int count = 0; %>
@@ -23,7 +23,7 @@
             <% } %>
             <% count++; %>
             <div class="grid_6">
-                <a href="frontend/images/<c:out value="${adv.adv_Image}"/>" class="type" style="margin-top: 0px"><img src="frontend/images/<c:out value="${adv.adv_Image}"/>" alt=""><span class="type_caption"><c:out value="${adv.com_Name}"/></span></a>
+                <a href="upload/advertise/${adv.adv_Image}" class="type" style="margin-top: 0px"><img src="upload/advertise/${adv.adv_Image}" alt=""><span class="type_caption"><c:out value="${adv.com_Name}"/></span></a>
             </div>    
             <% if(count%2 == 0) {%>
             </div>

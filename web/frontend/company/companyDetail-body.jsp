@@ -12,7 +12,7 @@
     <div class="container_12">
         <div class="grid_4 prefix_1">
             <h3 style="padding-top: 80px; text-align: center"><c:out value="${company.com_Name}"/></h3>
-            <img src="frontend/images/page2_img1.jpg" alt="" class="img_inner fleft">
+            <img src="upload/company/${company.com_Image}" alt="" class="img_inner fleft">
         </div>
         <div class="grid_4 prefix_1">
             <div style="padding-top:30px">

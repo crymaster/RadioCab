@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
 
 /**
  *
@@ -29,6 +30,7 @@ public class RegisterCompanyForm extends org.apache.struts.action.ActionForm {
     private String comTel;
     private String comFax;
     private String comEmail;
+    private FormFile image;
     private int membershipType;
     private int paymentType;
     private ArrayList cityList;
@@ -131,6 +133,14 @@ public class RegisterCompanyForm extends org.apache.struts.action.ActionForm {
         this.comEmail = comEmail;
     }
 
+    public FormFile getImage() {
+        return image;
+    }
+
+    public void setImage(FormFile image) {
+        this.image = image;
+    }
+
     public int getMembershipType() {
         return membershipType;
     }
@@ -171,7 +181,7 @@ public class RegisterCompanyForm extends org.apache.struts.action.ActionForm {
         this.paymentTypeList = paymentTypeList;
     }
 
-        /**
+    /**
      * This is the action called from the Struts framework.
      *
      * @param mapping The ActionMapping used to select this instance.

@@ -41,7 +41,7 @@
         <div class="grid_4">
             <div class="box">
                 <div class="maxheight">
-                    <img src="frontend/images/page4_img1.jpg" alt="">
+                    <img src="upload/driver/${driver.driver_Image}" alt="">
                     <div class="text1 color2">
                         <a href="driver-detail.do?id=<c:out value="${driver.driver_ID}"/>"><c:out value="${driver.driver_Name}"></c:out></a>
                         </div>

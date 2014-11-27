@@ -1,4 +1,4 @@
-<%-- 
+w<%-- 
     Document   : driver-register-body
     Created on : Nov 25, 2014, 2:52:36 PM
     Author     : son
@@ -17,7 +17,7 @@
             <c:forEach items="${requestScope.errors}" var="error">
                 <bean:message key="${error}"/>
             </c:forEach>
-            <html:form action="/order-advertise-handler">
+            <html:form action="/order-advertise-handler" enctype="multipart/form-data">
                 Company Name: 
                 <c:forEach items="${cookie}" var="item">
                     <c:if test="${item.key == 'rcUsername'}">
@@ -26,7 +26,7 @@
                 </c:forEach>
                 <br/>
                 <br/>
-                Advertising Image: 
+                Advertising Image: <html:file property="image"/>
                 <br/>
                 <br/>
                 Description: <html:text property="advDescription"/>

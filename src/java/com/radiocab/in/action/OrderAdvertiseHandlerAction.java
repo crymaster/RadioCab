@@ -15,6 +15,7 @@ import db.PaymenttypeDB;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,10 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
 import utils.ActionResult;
+import utils.ImageValidator;
+import utils.UploadImageUtil;
 
 /**
  *
@@ -45,8 +49,25 @@ public class OrderAdvertiseHandlerAction extends Action {
         }
         ArrayList errors = new ArrayList();
         OrderAdvertiseForm orderForm = (OrderAdvertiseForm) form;
+        if (orderForm.getImage() != null) {
+            if (!ImageValidator.validate(orderForm.getImage().getFileName())) {
+                errors.add("error.image.wrongext");
+            }
+            if (orderForm.getImage().getFileSize() > 2097152) {
+                errors.add("error.image.toobig");
+            }
+        }
+        if (errors.size() > 0) {
+            request.setAttribute("errors", errors);
+            return mapping.findForward(ActionResult.FAILURE);
+        }
+        FormFile file = orderForm.getImage();
+        Random rd = new Random();
+        String fileName = rd.nextInt(10000) + file.getFileName();
+        String filePath = getServlet().getServletContext().getRealPath("/") + "upload/advertise";
+        UploadImageUtil.upload(fileName, filePath, file.getFileData());
         AdvertiseBean adv = new AdvertiseBean();
-        adv.setAdv_Image("link");
+        adv.setAdv_Image(fileName);
         adv.setCom_ID(userId);
         adv.setAdv_Status(1);
         adv.setAdv_Description(orderForm.getAdvDescription());

@@ -17,7 +17,7 @@
             <c:forEach items="${requestScope.errors}" var="error">
                 <div class="error"><bean:message key="${error}"/></div>
             </c:forEach>
-            <html:form action="/register-driver-handler">
+            <html:form action="/register-driver-handler" enctype="multipart/form-data">
                 Driver User Name: <html:text property="drvUsername"/>
                 <br/>
                 <br/>
@@ -48,6 +48,9 @@
                 <br/>
                 <br/>
                 Email: <html:text property="drvEmail"/>
+                <br/>
+                <br/>
+                Image: <html:file property="image" />
                 <br/>
                 <br/>
                 Experience: <html:textarea property="drvExp"/>

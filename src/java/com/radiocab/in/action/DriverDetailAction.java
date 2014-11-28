@@ -7,6 +7,7 @@ package com.radiocab.in.action;
 
 import beans.DriverBean;
 import db.DriverDB;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
@@ -37,6 +38,9 @@ public class DriverDetailAction extends Action {
         if (driver == null) {
             return mapping.findForward(ActionResult.FAILURE);
         }
+        Cookie cookie = new Cookie("rcPage", "driver");
+        cookie.setMaxAge(60 * 60); //1 hour
+        response.addCookie(cookie);
         request.setAttribute("driver", driver);
         return mapping.findForward(ActionResult.SUCCESS);
     }

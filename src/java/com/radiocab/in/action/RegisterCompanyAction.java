@@ -35,7 +35,13 @@ public class RegisterCompanyAction extends Action {
             if ("rcUsername".equals(cookie.getName())) {
                 return mapping.findForward(ActionResult.NOT_AVAILABLE);
             }
+            if ("rcUsername".equals(cookie.getName())) {
+                return mapping.findForward(ActionResult.NOT_AVAILABLE);
+            }
         }
+        Cookie cookie = new Cookie("rcPage", "company");
+        cookie.setMaxAge(60 * 60); //1 hour
+        response.addCookie(cookie);
         RegisterCompanyForm regForm = (RegisterCompanyForm) form;
         ArrayList<CityBean> cities = (ArrayList) CityDB.getAllAvailableCity();
         ArrayList<MembertypeBean> members = (ArrayList) MembertypeDB.getAllAvailableMembertype();

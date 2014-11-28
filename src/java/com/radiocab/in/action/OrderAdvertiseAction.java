@@ -29,6 +29,9 @@ public class OrderAdvertiseAction extends Action {
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
             if ("rcUserType".equals(cookie.getName()) && cookie.getValue().equalsIgnoreCase("company")) {
+                Cookie cookie1 = new Cookie("rcPage", "order");
+                cookie1.setMaxAge(60 * 60); //1 hour
+                response.addCookie(cookie);
                 OrderAdvertiseForm orderForm = (OrderAdvertiseForm) form;
                 ArrayList<PaymenttypeBean> payments = (ArrayList) PaymenttypeDB.getPaymentTypeByPtFor("Advertise");
                 orderForm.setPaymentTypeList(payments);

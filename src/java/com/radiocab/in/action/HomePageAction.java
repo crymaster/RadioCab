@@ -5,6 +5,7 @@
  */
 package com.radiocab.in.action;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -34,7 +35,14 @@ public class HomePageAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("rcPage")) {
+                cookie.setValue("");
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+        }
         return mapping.findForward(SUCCESS);
     }
 }

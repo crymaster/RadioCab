@@ -35,6 +35,9 @@ public class LoginAction extends Action {
                 return mapping.findForward(ActionResult.NOT_AVAILABLE);
             }
         }
+        Cookie cookie1 = new Cookie("rcPage", "login");
+        cookie1.setMaxAge(60 * 60); //1 hour
+        response.addCookie(cookie1);
         ArrayList errors = new ArrayList();
         LoginForm loginForm = (LoginForm) form;
         if (request.getMethod().equals(HttpMethod.GET)) {

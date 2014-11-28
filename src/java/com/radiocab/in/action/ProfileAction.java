@@ -59,6 +59,9 @@ public class ProfileAction extends Action{
             PaymentBean payment = PaymentDB.getPaymentByDriverId(driver.getDriver_ID());
             request.setAttribute("dPayment", payment);
         }
+        Cookie cookie = new Cookie("rcPage", "profile");
+        cookie.setMaxAge(60 * 60); //1 hour
+        response.addCookie(cookie);
         return mapping.findForward(ActionResult.SUCCESS);
     }
     

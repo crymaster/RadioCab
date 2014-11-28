@@ -9,6 +9,7 @@ import beans.CityBean;
 import com.radiocab.in.actionform.FeedbackForm;
 import db.CityDB;
 import java.util.ArrayList;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
@@ -25,6 +26,9 @@ public class FeedbackAction extends Action{
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Cookie cookie = new Cookie("rcPage", "feedback");
+        cookie.setMaxAge(60 * 60); //1 hour
+        response.addCookie(cookie);
         FeedbackForm fbForm = (FeedbackForm) form;
         ArrayList<CityBean> cityList = (ArrayList<CityBean>)CityDB.getAllAvailableCity();
         fbForm.setCityList(cityList);

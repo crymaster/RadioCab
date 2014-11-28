@@ -9,6 +9,7 @@ import beans.CityBean;
 import com.radiocab.in.actionform.SearchCompanyForm;
 import db.CityDB;
 import java.util.ArrayList;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -36,6 +37,9 @@ public class CompanyAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        Cookie cookie = new Cookie("rcPage", "company");
+        cookie.setMaxAge(60 * 60); //1 hour
+        response.addCookie(cookie);
         SearchCompanyForm searchForm = (SearchCompanyForm) form;
         ArrayList<CityBean> cities = (ArrayList) CityDB.getAllAvailableCity();
         CityBean allCity = new CityBean();

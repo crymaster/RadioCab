@@ -34,6 +34,9 @@ public class RegisterDriverAction extends Action {
                 return mapping.findForward(ActionResult.NOT_AVAILABLE);
             }
         }
+        Cookie cookie = new Cookie("rcPage", "driver");
+        cookie.setMaxAge(60 * 60); //1 hour
+        response.addCookie(cookie);
         RegisterDriverForm regForm = (RegisterDriverForm) form;
         ArrayList<CityBean> cities = (ArrayList) CityDB.getAllAvailableCity();
         ArrayList<PaymenttypeBean> payments = (ArrayList) PaymenttypeDB.getPaymentTypeByPtFor("Driver");

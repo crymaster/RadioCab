@@ -2,6 +2,7 @@ package com.radiocab.in.action;
 
 import beans.CompanyBean;
 import db.CompanyDB;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
@@ -33,10 +34,14 @@ public class CompanyDetailAction extends Action {
         } catch (NumberFormatException e) {
             return mapping.findForward(ActionResult.FAILURE);
         }
+        
         CompanyBean company = CompanyDB.getCompanyByID(comId);
         if (company == null) {
             return mapping.findForward(ActionResult.FAILURE);
         }
+        Cookie cookie = new Cookie("rcPage", "company");
+        cookie.setMaxAge(60 * 60); //1 hour
+        response.addCookie(cookie);
         request.setAttribute("company", company);
         return mapping.findForward(ActionResult.SUCCESS);
     }

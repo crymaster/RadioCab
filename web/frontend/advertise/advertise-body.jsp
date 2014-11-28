@@ -13,21 +13,31 @@
     <div class="container_12">
         <div class="grid_12">
             <h3 style="text-align: center">Taxi Company Advertisement</h3>
-            <a> <a href="order-advertise.do" class="bigLink" style="padding-top: 0px; text-align: center">Advertise your company</a>
+            <% boolean loggedIn = false; %>
+            <c:forEach items="${cookie}" var="item">
+                <c:if test="${item.key == 'rcUserType'}">
+                    <c:if test="${item.value.value == 'company'}">
+                        <% loggedIn = true;%>
+                    </c:if>
+                </c:if>
+            </c:forEach>
+            <% if (loggedIn) {%>
+            <a href="order-advertise.do" class="bigLink" style="padding-top: 0px; text-align: center">Advertise your company</a>
+            <% } %>
         </div>
         <div class="clear"></div>
         <% int count = 0; %>
         <c:forEach items="${requestScope.advs}" var="adv">
-            <% if(count%2 == 0) {%>
+            <% if (count % 2 == 0) {%>
             <div class="gallery">
-            <% } %>
-            <% count++; %>
-            <div class="grid_6">
-                <a href="upload/advertise/${adv.adv_Image}" class="type" style="margin-top: 0px"><img src="upload/advertise/${adv.adv_Image}" alt=""><span class="type_caption"><c:out value="${adv.com_Name}"/></span></a>
-            </div>    
-            <% if(count%2 == 0) {%>
+                <% } %>
+                <% count++; %>
+                <div class="grid_6">
+                    <a href="upload/advertise/${adv.adv_Image}" class="type" style="margin-top: 0px"><img src="upload/advertise/${adv.adv_Image}" alt=""><span class="type_caption"><c:out value="${adv.com_Name}"/></span></a>
+                </div>    
+                <% if (count % 2 == 0) {%>
             </div>
-            <% } %>
+            <% }%>
         </c:forEach>
     </div>
 </div>

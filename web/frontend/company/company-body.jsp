@@ -1,5 +1,5 @@
 <%-- 
-    Document   : listing-body
+    Document   : company-body
     Created on : Nov 23, 2014, 6:34:17 PM
     Author     : Son
 --%>
@@ -29,8 +29,16 @@
                 <html:submit value="Search" styleClass="btn"/>
             </html:form>
         </div>
+        <% boolean loggedIn = false; %>
+        <c:forEach items="${cookie}" var="item">
+            <c:if test="${item.key == 'rcUsername'}">
+                <% loggedIn = true;%>
+            </c:if>
+        </c:forEach>
         <div class="grid_5">
+            <% if (!loggedIn) {%>
             <a href="register-company.do" class="bigLink">Register your company</a>
+            <% }%>
         </div>
     </div>
     <div class="clear"></div>

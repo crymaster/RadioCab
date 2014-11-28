@@ -242,7 +242,7 @@ public class PaymentDB {
             } else {
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT * FROM tblPayment "
-                        + "WHERE drvID = " + driverId+ " AND payStatus = 1");
+                        + "WHERE drvID = " + driverId+ " AND payStatus > 1");
                 while (rs.next()) {
                     item.setPay_ID(rs.getInt("payID"));
                     item.setPaytype_ID(rs.getInt("ptID"));
@@ -280,7 +280,7 @@ public class PaymentDB {
             } else {
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT * FROM tblPayment "
-                        + "WHERE comID = " + comId+ " AND payStatus = 1");
+                        + "WHERE comID = " + comId+ " AND payStatus > 1");
                 while (rs.next()) {
                     item = new PaymentBean();
                     item.setPay_ID(rs.getInt("payID"));

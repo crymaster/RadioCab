@@ -40,6 +40,12 @@ public class RegisterDriverHandlerAction extends Action {
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if ("rcUsername".equals(cookie.getName())) {
+                return mapping.findForward(ActionResult.NOT_AVAILABLE);
+            }
+        }
         ArrayList errors = new ArrayList();
         RegisterDriverForm regForm = (RegisterDriverForm) form;
         if (regForm.getDrvUsername() == null || regForm.getDrvUsername().trim().equals("")) {

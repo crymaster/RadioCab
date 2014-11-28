@@ -29,8 +29,16 @@
                 <html:submit value="Search" styleClass="btn"/>
             </html:form>
         </div>
+        <% boolean loggedIn = false; %>
+        <c:forEach items="${cookie}" var="item">
+            <c:if test="${item.key == 'rcUsername'}">
+                <% loggedIn = true;%>
+            </c:if>
+        </c:forEach>
         <div class="grid_6">
+            <% if (!loggedIn) {%>
             <a href="register-driver.do" class="bigLink">Are you a taxi driver? Register now</a>
+            <% }%>
         </div>
     </div>
     <div class="clear"></div>

@@ -37,65 +37,70 @@ public class OrderAdvertiseHandlerAction extends Action {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Cookie[] cookies = request.getCookies();
-        String username = "";
-        int userId = 0;
         for (Cookie cookie : cookies) {
-            if ("rcUsername".equals(cookie.getName())) {
-                username = cookie.getValue();
-            }
-            if ("rcUserId".equals(cookie.getName())) {
-                userId = Integer.parseInt(cookie.getValue());
-            }
-        }
-        ArrayList errors = new ArrayList();
-        OrderAdvertiseForm orderForm = (OrderAdvertiseForm) form;
-        if (orderForm.getImage() != null) {
-            if (!ImageValidator.validate(orderForm.getImage().getFileName())) {
-                errors.add("error.image.wrongext");
-            }
-            if (orderForm.getImage().getFileSize() > 2097152) {
-                errors.add("error.image.toobig");
-            }
-        }
-        if (errors.size() > 0) {
-            request.setAttribute("errors", errors);
-            return mapping.findForward(ActionResult.FAILURE);
-        }
-        FormFile file = orderForm.getImage();
-        Random rd = new Random();
-        String fileName = rd.nextInt(10000) + file.getFileName();
-        String filePath = getServlet().getServletContext().getRealPath("/") + "upload/advertise";
-        UploadImageUtil.upload(fileName, filePath, file.getFileData());
-        AdvertiseBean adv = new AdvertiseBean();
-        adv.setAdv_Image(fileName);
-        adv.setCom_ID(userId);
-        adv.setAdv_Status(1);
-        adv.setAdv_Description(orderForm.getAdvDescription());
-        int id = AdvertiseDB.addAdvertise(adv);
+            if ("rcUserType".equals(cookie.getName()) && cookie.getValue().equalsIgnoreCase("company")) {
+                String username = "";
+                int userId = 0;
+                for (Cookie cookie1 : cookies) {
+                    if ("rcUsername".equals(cookie1.getName())) {
+                        username = cookie1.getValue();
+                    }
+                    if ("rcUserId".equals(cookie1.getName())) {
+                        userId = Integer.parseInt(cookie1.getValue());
+                    }
+                }
+                ArrayList errors = new ArrayList();
+                OrderAdvertiseForm orderForm = (OrderAdvertiseForm) form;
+                if (orderForm.getImage() != null) {
+                    if (!ImageValidator.validate(orderForm.getImage().getFileName())) {
+                        errors.add("error.image.wrongext");
+                    }
+                    if (orderForm.getImage().getFileSize() > 2097152) {
+                        errors.add("error.image.toobig");
+                    }
+                }
+                if (errors.size() > 0) {
+                    request.setAttribute("errors", errors);
+                    return mapping.findForward(ActionResult.FAILURE);
+                }
+                FormFile file = orderForm.getImage();
+                Random rd = new Random();
+                String fileName = rd.nextInt(10000) + file.getFileName();
+                String filePath = getServlet().getServletContext().getRealPath("/") + "upload/advertise";
+                UploadImageUtil.upload(fileName, filePath, file.getFileData());
+                AdvertiseBean adv = new AdvertiseBean();
+                adv.setAdv_Image(fileName);
+                adv.setCom_ID(userId);
+                adv.setAdv_Status(1);
+                adv.setAdv_Description(orderForm.getAdvDescription());
+                int id = AdvertiseDB.addAdvertise(adv);
 
-        if (id == -1) {
-            errors.add("registerError");
-            request.setAttribute("errors", errors);
-            ArrayList<PaymenttypeBean> payments = (ArrayList) PaymenttypeDB.getPaymentTypeByPtFor("Advertise");
-            orderForm.setPaymentTypeList(payments);
-            return mapping.findForward(ActionResult.FAILURE);
-        } else {
-            adv.setAdv_ID(id);
-            PaymentBean payment = new PaymentBean();
-            payment.setPaytype_ID(orderForm.getPaymentType());
-            payment.setCom_ID(userId);
-            payment.setAdv_ID(id);
-            Date today = new Date();
-            payment.setPay_Time(new Timestamp(today.getTime()));
-            payment.setPay_Total(0);
-            payment.setPay_Status(1);
+                if (id == -1) {
+                    errors.add("registerError");
+                    request.setAttribute("errors", errors);
+                    ArrayList<PaymenttypeBean> payments = (ArrayList) PaymenttypeDB.getPaymentTypeByPtFor("Advertise");
+                    orderForm.setPaymentTypeList(payments);
+                    return mapping.findForward(ActionResult.FAILURE);
+                } else {
+                    adv.setAdv_ID(id);
+                    PaymentBean payment = new PaymentBean();
+                    payment.setPaytype_ID(orderForm.getPaymentType());
+                    payment.setCom_ID(userId);
+                    payment.setAdv_ID(id);
+                    Date today = new Date();
+                    payment.setPay_Time(new Timestamp(today.getTime()));
+                    payment.setPay_Total(0);
+                    payment.setPay_Status(1);
 
-            if (!PaymentDB.addPayment(payment)) {
-                errors.add("registerError");
-                request.setAttribute("errors", errors);
-                return mapping.findForward(ActionResult.FAILURE);
+                    if (!PaymentDB.addPayment(payment)) {
+                        errors.add("registerError");
+                        request.setAttribute("errors", errors);
+                        return mapping.findForward(ActionResult.FAILURE);
+                    }
+                    return mapping.findForward(ActionResult.SUCCESS);
+                }
             }
-            return mapping.findForward(ActionResult.SUCCESS);
         }
+        return mapping.findForward(ActionResult.NOT_AVAILABLE);
     }
 }

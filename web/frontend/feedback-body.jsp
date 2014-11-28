@@ -12,7 +12,7 @@
 <div class="content">
     <div class="container_12">
 
-        <div class="grid_6 prefix_1">
+        <div class="grid_6 prefix_4">
             <h3>Feedback</h3>
             <c:forEach items="${requestScope.errors}" var="error">
                 <div class="error"><bean:message key="${error}"/></div>

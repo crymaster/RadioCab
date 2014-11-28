@@ -77,6 +77,12 @@
                     From: <span class="color1"><fmt:formatDate pattern="dd/MM/yyyy" value="${payment.pay_Time}" /></span><br/>
                     To: <span class="color1"><fmt:formatDate pattern="dd/MM/yyyy" value="${payment.pay_TimeExpired}"/></span><br/>
                     Amount: <span class="color1"><c:out value="${payment.pay_Total}"/>$</span><br/>
+                    <c:if test="${payment.pay_Status == 1}">
+                        Status: <span class="color1">Paid</span><br/>
+                    </c:if>
+                    <c:if test="${payment.pay_Status == 2}">
+                        Status: <span class="color1">Not Paid</span><br/>
+                    </c:if>
                     <br/>
                 </c:forEach>
                 <c:if test="${not empty driver}">
@@ -86,6 +92,12 @@
                     From: <span class="color1"><fmt:formatDate pattern="dd/MM/yyyy" value="${dPayment.pay_Time}" /></span><br/>
                     Expired date: <span class="color1"><fmt:formatDate pattern="dd/MM/yyyy" value="${dPayment.pay_TimeExpired}"/></span><br/>
                     Amount: <span class="color1"><c:out value="${dPayment.pay_Total}"/>$</span>
+                    <c:if test="${payment.pay_Status == 1}">
+                        Status: <span class="color1">Paid</span><br/>
+                    </c:if>
+                    <c:if test="${payment.pay_Status == 2}">
+                        Status: <span class="color1">Not Paid</span><br/>
+                    </c:if>
                 </c:if>
             </div>
         </div>

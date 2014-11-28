@@ -38,11 +38,13 @@
         <!-- Handle register company -->
         <action path="/register-company" type="com.radiocab.in.action.RegisterCompanyAction" name="registerCompanyForm">
             <forward name="success" path="/frontend/company/registerCompany.jsp"/>
+            <forward name="not available" path="/companies.do" redirect="true" />
         </action>
         
         <action path="/register-company-handler" type="com.radiocab.in.action.RegisterCompanyHandlerAction" name="registerCompanyForm">
             <forward name="success" path="/profile.do" redirect="true"/>
             <forward name="failure" path="/frontend/company/registerCompany.jsp"/>
+            <forward name="not available" path="/companies.do" redirect="true" />
         </action>
         
          <!-- Handle search driver -->
@@ -57,21 +59,25 @@
         <!-- Handle register driver -->
         <action path="/register-driver" type="com.radiocab.in.action.RegisterDriverAction" name="registerDriverForm">
             <forward name="success" path="/frontend/driver/registerDriver.jsp"/>
+            <forward name="not available" path="/drivers.do" redirect="true" />
         </action>
         
         <action path="/register-driver-handler" type="com.radiocab.in.action.RegisterDriverHandlerAction" name="registerDriverForm">
             <forward name="success" path="/profile.do" redirect="true" />
             <forward name="failure" path="/frontend/driver/registerDriver.jsp"/>
+            <forward name="not available" path="/drivers.do" redirect="true" />
         </action>
         
         <!-- Handle order advertise -->
         <action path="/order-advertise" type="com.radiocab.in.action.OrderAdvertiseAction" name="orderAdvertiseForm">
             <forward name="success" path="/frontend/advertise/orderAdvertise.jsp"/>
+            <forward name="not available" path="/advertises.do" redirect="true" />
         </action>
         
         <action path="/order-advertise-handler" type="com.radiocab.in.action.OrderAdvertiseHandlerAction" name="orderAdvertiseForm">
             <forward name="success" path="/advertises.do" redirect="true" />
             <forward name="failure" path="/frontend/advertise/orderAdvertise.jsp"/>
+            <forward name="not available" path="/advertises.do" redirect="true" />
         </action>
         
         <!-- Show advertise -->
@@ -84,6 +90,7 @@
             <forward name="input" path="/frontend/login.jsp"/>
             <forward name="success" path="/homepage.do" redirect="true"/>
             <forward name="failure" path="/frontend/login.jsp"/>
+            <forward name="not available" path="/homepage.do" redirect="true" />
         </action>
         
         <!-- Profile -->

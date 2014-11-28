@@ -54,6 +54,12 @@ public class RegisterCompanyHandlerAction extends org.apache.struts.action.Actio
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if ("rcUsername".equals(cookie.getName())) {
+                return mapping.findForward(ActionResult.NOT_AVAILABLE);
+            }
+        }
         ArrayList errors = new ArrayList();
         RegisterCompanyForm regForm = (RegisterCompanyForm) form;
         if (regForm.getComUsername() == null || regForm.getComUsername().trim().equals("")) {

@@ -29,6 +29,12 @@ public class LoginAction extends Action {
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if ("rcUsername".equals(cookie.getName())) {
+                return mapping.findForward(ActionResult.NOT_AVAILABLE);
+            }
+        }
         ArrayList errors = new ArrayList();
         LoginForm loginForm = (LoginForm) form;
         if (request.getMethod().equals(HttpMethod.GET)) {
@@ -36,13 +42,13 @@ public class LoginAction extends Action {
             return mapping.findForward(ActionResult.INPUT);
         } else {
             if (loginForm.getType().equals("company")) {
-                if (loginForm.getUsername()== null || loginForm.getUsername().trim().equals("")) {
+                if (loginForm.getUsername() == null || loginForm.getUsername().trim().equals("")) {
                     errors.add("error.loginName.required");
                 }
-                if (loginForm.getPassword()== null || loginForm.getPassword().trim().equals("")) {
+                if (loginForm.getPassword() == null || loginForm.getPassword().trim().equals("")) {
                     errors.add("error.pass.required");
                 }
-                if(errors.size() >0){
+                if (errors.size() > 0) {
                     request.setAttribute("errors", errors);
                     return mapping.findForward(ActionResult.FAILURE);
                 }

@@ -13,6 +13,7 @@ import db.CityDB;
 import db.MembertypeDB;
 import db.PaymenttypeDB;
 import java.util.ArrayList;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
@@ -29,6 +30,12 @@ public class RegisterCompanyAction extends Action {
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if ("rcUsername".equals(cookie.getName())) {
+                return mapping.findForward(ActionResult.NOT_AVAILABLE);
+            }
+        }
         RegisterCompanyForm regForm = (RegisterCompanyForm) form;
         ArrayList<CityBean> cities = (ArrayList) CityDB.getAllAvailableCity();
         ArrayList<MembertypeBean> members = (ArrayList) MembertypeDB.getAllAvailableMembertype();

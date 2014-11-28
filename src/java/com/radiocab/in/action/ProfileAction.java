@@ -5,9 +5,11 @@
  */
 package com.radiocab.in.action;
 
+import beans.AdvertiseBean;
 import beans.CompanyBean;
 import beans.DriverBean;
 import beans.PaymentBean;
+import db.AdvertiseDB;
 import db.CompanyDB;
 import db.DriverDB;
 import db.PaymentDB;
@@ -49,6 +51,8 @@ public class ProfileAction extends Action{
             request.setAttribute("company", company);
             ArrayList<PaymentBean> payments = (ArrayList<PaymentBean>)PaymentDB.getPaymentByComId(company.getCom_ID());
             request.setAttribute("cPayment", payments);
+            ArrayList<AdvertiseBean> advs = (ArrayList)AdvertiseDB.getAllAdsOfCompany(userId);
+            request.setAttribute("advs", advs);
         } else if(type.equals("driver")){
             DriverBean driver = DriverDB.getDriverByID(userId);
             request.setAttribute("driver", driver);

@@ -101,6 +101,35 @@
                 </c:if>
             </div>
         </div>
+        <div class="container_12">
+            <div class="grid_12">
+                <h3 style="text-align: center">Your Advertisement</h3>
+            </div>
+            <div class="clear"></div>
+            <% int count = 0; %>
+            <c:forEach items="${advs}" var="adv">
+                <% if (count % 2 == 0) {%>
+                <div class="gallery">
+                    <% } %>
+                    <% count++; %>
+                    <div class="grid_6">
+                        <a href="upload/advertise/${adv.adv_Image}" class="type" style="margin-top: 0px">
+                            <img src="upload/advertise/${adv.adv_Image}" alt="">
+                            <span class="type_caption">
+                                <c:if test="${adv.adv_Status == 1}">
+                                    Paid
+                                </c:if>
+                                <c:if test="${adv.adv_Status == 0}">
+                                    Not Paid
+                                </c:if>
+                            </span>
+                        </a>
+                    </div>    
+                    <% if (count % 2 == 0) {%>
+                </div>
+                <% }%>
+            </c:forEach>
+        </div>
         <div class="clear"></div>
     </div>
 </div>

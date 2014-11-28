@@ -135,7 +135,39 @@ public class AdvertiseDB {
 
         return list;
     }
+    
+    public static List<AdvertiseBean> getAllAdsOfCompany(int comId) {
+        List<AdvertiseBean> list = new ArrayList<AdvertiseBean>();
+        try {
+            if (!connect()) {
+                return list;
+            } else {
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM tblAdvertise "
+                        + "inner join tblCompany on tblAdvertise.comID = tblCompany.comID "
+                        + "WHERE tblCompany.comID = "+ comId);
+                while (rs.next()) {
+                    AdvertiseBean item = new AdvertiseBean();
+                    item.setAdv_ID(rs.getInt("advID"));
+                    item.setCom_ID(rs.getInt("comID"));
+                    item.setCom_Name(rs.getString("comName"));
+                    item.setAdv_Image(rs.getString("advImageURL"));
+                    item.setAdv_Regdate(rs.getTimestamp("advRegDate"));
+                    item.setAdv_Description(rs.getString("advDescription"));
+                    item.setAdv_Status(rs.getInt("advStatus"));
+                    list.add(item);
+                }
+            }
 
+        } catch (SQLException ex) {
+            Logger.getLogger(AdvertiseDB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            disconnect();
+        }
+
+        return list;
+    }
+            
     public static AdvertiseBean getAdvertiseByID(int gr_id) {
         AdvertiseBean item = new AdvertiseBean();
         try {

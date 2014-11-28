@@ -13,9 +13,9 @@
                 <nav class="horizontal-nav full-width horizontalNav-notprocessed">
                     <ul class="sf-menu">
                         <li class="current"><a href="homepage.do">Home</a></li>
-                        <li><a href="companies.do">Companies</a></li>
-                        <li><a href="drivers.do">Drivers</a></li>
-                        <li><a href="advertises.do">Advertises</a></li>
+                        <li><a href="companies.do">Company</a></li>
+                        <li><a href="drivers.do">Driver</a></li>
+                        <li><a href="advertises.do">Advertisement</a></li>
                         <li><a href="feedback.do">Feedback</a></li>
                         <% boolean loggedIn = false; %>
                         <c:forEach items="${cookie}" var="item">

@@ -71,7 +71,7 @@ public class OrderAdvertiseHandlerAction extends Action {
                 AdvertiseBean adv = new AdvertiseBean();
                 adv.setAdv_Image(fileName);
                 adv.setCom_ID(userId);
-                adv.setAdv_Status(1);
+                adv.setAdv_Status(0);
                 adv.setAdv_Description(orderForm.getAdvDescription());
                 int id = AdvertiseDB.addAdvertise(adv);
 
@@ -90,7 +90,7 @@ public class OrderAdvertiseHandlerAction extends Action {
                     Date today = new Date();
                     payment.setPay_Time(new Timestamp(today.getTime()));
                     payment.setPay_Total(0);
-                    payment.setPay_Status(1);
+                    payment.setPay_Status(2);
 
                     if (!PaymentDB.addPayment(payment)) {
                         errors.add("registerError");
